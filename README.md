@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![alt text](https://github.com/isaacki1003/AppBnB/blob/main/1.png?raw=true)
 
 ## API Documentation
 
