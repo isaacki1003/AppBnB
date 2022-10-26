@@ -6,6 +6,8 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [
       {
         email: 'demo@user.io',
+        firstName: 'Barack',
+        lastName: 'Obama',
         username: 'Demo-lition',
         firstName: 'Isaac',
         lastName: 'Ki',
@@ -13,6 +15,8 @@ module.exports = {
       },
       {
         email: 'user1@user.io',
+        firstName: 'Donald',
+        lastName: 'Trump',
         username: 'FakeUser1',
         firstName: 'Hoon',
         lastName: 'Kim',
@@ -20,6 +24,8 @@ module.exports = {
       },
       {
         email: 'user2@user.io',
+        firstName: 'Joe',
+        lastName: 'Biden',
         username: 'FakeUser2',
         firstName: 'Leyland',
         lastName: 'Chin',
