@@ -18,7 +18,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete('ReviewImages', {
-      url: { [Op.in]: ['www.crazy.com', 'www.funny.com'] }
+      url: { [Op.in]: ['www.test1.com', 'www.test2.com'] }
     })
   }
 };
