@@ -7,7 +7,38 @@ const { Op } = require('sequelize');
 
 const router = express.Router();
 
+//Get all Reviews by a Spot's id
+router.get('/:spotId/reviews', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
 
+    if (!spot) {
+      return res
+        .status(404)
+        .json({
+          message: "Spot couldn't be found",
+          statusCode: res.statusCode
+        });
+    };
+
+    const reviews = await Review.findAll({
+        where: {
+          spotId: spot.id
+        },
+        include: [
+          {
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
+          },
+          {
+            model: ReviewImage,
+            attributes: ['id', 'url']
+          }
+        ]
+      });
+
+      return res.json({ Reviews: reviews });
+
+});
 
 //Get all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res) => {
@@ -99,31 +130,85 @@ router.get('/', async (req, res) => {
 
 });
 
-  //Add an Image to a Spot based on the Spot's id
-router.post('/:spotId/images', requireAuth, async (req, res) => {
-const spot = await Spot.findByPk(req.params.spotId);
-const { url, preview } = req.body;
+//Create a Review for a Spot based on the Spot's id
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
 
-if (!spot) {
-    return res
-        .status(404)
-        .json({
-        message: "Spot couldn't be found",
-        statusCode: res.statusCode
-        });
+    if (!spot) {
+        return res
+            .status(404)
+            .json({
+            message: "Spot couldn't be found",
+            statusCode: res.statusCode
+            });
     };
 
-const image = await SpotImage.create({
-    spotId: spot.id,
-    url,
-    preview
+    const { review, stars } = req.body;
+
+    if (!review || !stars ) {
+        return res
+          .status(404)
+          .json({
+            message: 'Validation Error',
+            statusCode: res.statusCode,
+            errors: [{
+              review: 'Review text is required',
+              stars: 'Stars must be an integer from 1 to 5'
+            }]
+          })
+      };
+
+      const exists = await Review.findOne({
+        where: {
+          userId: req.user.id,
+          spotId: req.params.spotId
+        }
+      });
+
+      if (exists) {
+        return res
+          .status(403)
+          .json({
+            message: 'User already has a review for this spot',
+            statusCode: res.statusCode
+          })
+      };
+
+    const review1 = await Review.create({
+        userId: req.user.id,
+        spotId: spot.id,
+        review,
+        stars
+    });
+
+    res.json(review1);
 });
 
-return res.json(image);
+//Add an Image to a Spot based on the Spot's id
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    const { url, preview } = req.body;
+
+    if (!spot) {
+        return res
+            .status(404)
+            .json({
+            message: "Spot couldn't be found",
+            statusCode: res.statusCode
+            });
+    };
+
+    const image = await SpotImage.create({
+        spotId: spot.id,
+        url,
+        preview
+    });
+
+    return res.json(image);
 });
 
-  //Create a Spot
-  router.post('/', requireAuth, async (req, res) => {
+//Create a Spot
+router.post('/', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
@@ -159,8 +244,8 @@ return res.json(image);
         price
     });
 
-      return res.json(newSpot);
-  });
+    return res.json(newSpot);
+});
 
   //Edit a Spot
   router.put('/:spotId', requireAuth, async (req, res) => {
