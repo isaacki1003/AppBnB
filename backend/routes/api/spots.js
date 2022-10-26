@@ -102,8 +102,8 @@ router.get('/:spotId', async (req, res) => {
     return res
         .status(404)
         .json({
-        message: "Spot couldn't be found",
-        statueCode: res.statusCode
+            message: "Spot couldn't be found",
+            statusCode: res.statusCode
         })
     };
 
@@ -184,6 +184,66 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     res.json(review1);
 });
 
+//Create a Booking from a Spot based on the Spot's id
+router.post('/:spotId/bookings', requireAuth, async (req, res) =>{
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if (!spot) {
+        return res
+          .status(404)
+          .json({
+            message: "Spot couldn't be found",
+            statusCode: res.statusCode
+          });
+    };
+
+    const { startDate, endDate } = req.body;
+
+    if (startDate >= endDate) {
+        return res
+          .status(400)
+          .json({
+            message: 'Validation Error',
+            statusCode: res.statusCode,
+            errors: [{
+              endDate: 'endDate cannot be on or before startDate'
+            }]
+          })
+    };
+
+    const bookings = await Booking.findAll({
+        where: {
+          spotId: spot.id
+        }
+    });
+
+    for (let i = 0; i < bookings.length; i++) {
+        if (bookings[i].startDate <= startDate && allBookings[i].endDate >= endDate || bookings[i].startDate >= startDate && bookings[i].endDate <= endDate) {
+          return res
+            .status(403)
+            .json({
+              message: 'Sorry, this spot is already booked for the specified dates',
+              statusCode: 403,
+              errors: [{
+                startDate: 'Start date conflicts with an already existing booking',
+                endDate: 'End date conflicts with an already existing booking'
+              }]
+            })
+        }
+      };
+
+      const booking = await Booking.create({
+        spotId: spot.id,
+        userId: req.user.id,
+        startDate,
+        endDate
+      });
+
+      return res.json(booking);
+
+});
+
+
 //Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
@@ -215,9 +275,9 @@ router.post('/', requireAuth, async (req, res) => {
         return res
           .status(400)
           .json({
-            "message": "Validation Error",
-            "statusCode": 400,
-            "errors": [{
+            message: "Validation Error",
+            statusCode: 400,
+            errors: [{
                 "address": "Street address is required",
                 "city": "City is required",
                 "state": "State is required",

@@ -8,7 +8,7 @@ const router = express.Router();
 //Get all of the Current User's Bookings
 router.get('/current', requireAuth, async (req, res) => {
 
-    const allBookings = await Booking.findAll({
+    const bookings = await Booking.findAll({
       where: {
         userId: req.user.id
       },
@@ -22,32 +22,32 @@ router.get('/current', requireAuth, async (req, res) => {
       ]
     });
 
-    for (let i = 0; i < allBookings.length; i++) {
-      let currBooking = allBookings[i].toJSON();
+    for (let i = 0; i < bookings.length; i++) {
+      let booking = bookings[i].toJSON();
 
-      const bookingPrev = await SpotImage.findOne({
+      const exists = await SpotImage.findOne({
         where: {
           preview: true,
           spotId: currBooking.spotId
         }
       });
 
-      if (!bookingPrev) {
-        currBooking.Spot.previewImage = 'No preview image available!'
+      if (!exists) {
+        booking.Spot.previewImage = 'No preview image'
       } else {
-        currBooking.Spot.previewImage = bookingPrev.url
+        booking.Spot.previewImage = exists.url
       }
 
-      allBookings[i] = currBooking;
+      bookings[i] = booking;
     };
 
-    return res.json({ Bookings: allBookings });
-  });
+    return res.json({ Bookings: bookings });
+});
 
-  // Edit a Booking
+// Edit a Booking
 router.put('/:bookingId', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
-    const findBooking = await Booking.findByPk(req.params.bookingId);
+    const booking = await Booking.findByPk(req.params.bookingId);
 
     if (!startDate || !endDate || endDate <= startDate) {
       return res
@@ -56,12 +56,12 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
           message: 'Validation Error',
           statusCode: res.statusCode,
           errors: [{
-            endDate: 'End date cannot come before Start Date'
+            endDate: 'endDate cannot come before startDate'
           }]
         });
     };
 
-    if (!findBooking) {
+    if (!booking) {
       return res
         .status(404)
         .json({
@@ -70,7 +70,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         });
     };
 
-    if (endDate < findBooking.endDate) {
+    if (endDate < booking.endDate) {
       return res
         .status(403)
         .json({
@@ -80,35 +80,32 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     };
 
     if (
-      findBooking.startDate >= startDate && findBooking.endDate <= endDate ||
-
-      findBooking.startDate <= startDate && findBooking.endDate >= endDate) {
-
+      booking.startDate >= startDate && booking.endDate <= endDate || booking.startDate <= startDate && booking.endDate >= endDate) {
       return res
         .status(403)
         .json({
-          message: 'Sorry, this spot is already booked for the specified dates',
-          statusCode: res.statusCode,
+          message: "Sorry, this spot is already booked for the specified dates",
+          statusCode: 403,
           errors: [{
-            startDate: 'Start date conflicts with an already existing booking',
-            endDate: 'End date conflicts with an already existing booking'
+            "startDate": "Start date conflicts with an existing booking",
+            "endDate": "End date conflicts with an existing booking"
           }]
         });
     };
 
-    findBooking.startDate = startDate;
-    findBooking.endDate = endDate;
-    findBooking.save();
+    booking.startDate = startDate;
+    booking.endDate = endDate;
+    booking.save();
 
-    return res.json(findBooking);
+    return res.json(booking);
   });
 
   // Delete a Booking
   router.delete('/:bookingId', requireAuth, async (req, res) => {
 
-    const findBooking = await Booking.findByPk(req.params.bookingId);
+    const booking = await Booking.findByPk(req.params.bookingId);
 
-    if (!findBooking) {
+    if (!booking) {
       return res
         .status(404)
         .json({
@@ -121,9 +118,9 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     let day = date.getDate();
     let month = date.getMonth();
     let year = date.getFullYear();
-    let currDate = `${year}-${month}-${day}`;
+    let currentDate = `${year}-${month}-${day}`;
 
-    if (findBooking.startDate <= currDate) {
+    if (booking.startDate <= currentDate) {
       return res
         .status(403)
         .json({
@@ -132,7 +129,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         });
     };
 
-    await findBooking.destroy();
+    await booking.destroy();
 
     return res
       .status(200)
