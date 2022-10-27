@@ -69,20 +69,20 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 
     const { url } = req.body;
 
-    const reviewImages = await ReviewImage.findAll({
+    const images = await ReviewImage.findAll({
         where: {
           reviewId: review.id
         }
     });
 
-    if (reviewImages.length >= 10) {
+    if (images.length >= 10) {
         return res
          .status(403)
          .json({
             message: "Maximum number of images for this resource was reached",
-             statusCode: res.statusCode
-      })
-    }
+            statusCode: res.statusCode
+            });
+    };
 
     const image = await ReviewImage.create({
         reviewId: review.id,
