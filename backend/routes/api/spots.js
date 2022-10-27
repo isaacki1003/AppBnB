@@ -313,7 +313,10 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) =>{
 
     const { startDate, endDate } = req.body;
 
-    if (startDate >= endDate) {
+    const reqStartDate = new Date(startDate).getTime()
+    const reqEndDate = new Date(endDate).getTime()
+
+    if (reqStartDate >= reqEndDate) {
         return res
           .status(400)
           .json({
@@ -332,12 +335,15 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) =>{
     });
 
     for (let i = 0; i < bookings.length; i++) {
-        if (bookings[i].startDate >= startDate && bookings[i].endDate <= endDate || bookings[i].startDate <= startDate && bookings[i].endDate >= endDate) {
+      let oldStartDate = new Date(bookings[i].startDate).getTime();
+      let oldEndDate = new Date(bookings[i].endDate).getTime();
+        if (oldStartDate >= reqStartDate && oldEndDate <= reqEndDate
+          || oldStartDate <= reqStartDate && oldEndDate >= reqEndDate) {
           return res
             .status(403)
             .json({
               message: 'Sorry, this spot is already booked for the specified dates',
-              statusCode: 403,
+              statusCode: res.statusCode,
               errors: [{
                 startDate: 'Start date conflicts with an already existing booking',
                 endDate: 'End date conflicts with an already existing booking'
@@ -347,7 +353,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) =>{
       };
 
       const booking = await Booking.create({
-        spotId: spot.id,
+        spotId: req.params.spotId,
         userId: req.user.id,
         startDate,
         endDate
