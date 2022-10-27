@@ -49,7 +49,14 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
     const booking = await Booking.findByPk(req.params.bookingId);
 
-    if (!startDate || !endDate || endDate <= startDate) {
+
+    const reqStartDate = new Date(startDate).getTime();
+    const reqEndDate = new Date(endDate).getTime();
+    const oldStartDate = new Date(booking.startDate).getTime();
+    const oldEndDate = new Date(booking.endDate).getTime();
+    const startDateTime = new Date(booking.startDate).getTime()
+
+    if (reqEndDate <= reqStartDate) {
       return res
         .status(400)
         .json({
@@ -70,7 +77,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         });
     };
 
-    if (endDate < booking.endDate) {
+    if (reqEndDate < oldEndDate) {
       return res
         .status(403)
         .json({
@@ -79,13 +86,13 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         });
     };
 
-    if (
-      booking.startDate >= startDate && booking.endDate <= endDate || booking.startDate <= startDate && booking.endDate >= endDate) {
+    if (oldStartDate >= reqStartDate && oldEndDate <= reqEndDate
+      || oldStartDate <= reqStartDate && oldEndDate >= reqEndDate) {
       return res
         .status(403)
         .json({
           message: "Sorry, this spot is already booked for the specified dates",
-          statusCode: 403,
+          statusCode: res.statusCode,
           errors: [{
             "startDate": "Start date conflicts with an existing booking",
             "endDate": "End date conflicts with an existing booking"
@@ -114,13 +121,10 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         });
     };
 
-    const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth();
-    let year = date.getFullYear();
-    let currentDate = `${year}-${month}-${day}`;
+    const currentDate = new Date().getTime();
+    const startDate1 = new Date(booking.startDate).getTime();
 
-    if (booking.startDate <= currentDate) {
+    if (startDate1 <= currentDate) {
       return res
         .status(403)
         .json({
