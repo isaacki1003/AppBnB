@@ -69,20 +69,20 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 
     const { url } = req.body;
 
-    const reviewImages = await ReviewImage.findAll({
+    const images = await ReviewImage.findAll({
         where: {
           reviewId: review.id
         }
     });
 
-    if (reviewImages.length >= 10) {
+    if (images.length >= 10) {
         return res
          .status(403)
          .json({
-            "message": "Maximum number of images for this resource was reached",
-             "statusCode": res.statusCode
-      })
-    }
+            message: "Maximum number of images for this resource was reached",
+            statusCode: res.statusCode
+            });
+    };
 
     const image = await ReviewImage.create({
         reviewId: review.id,
@@ -97,38 +97,38 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 
 //Edit a Review
 router.put('/:reviewId', requireAuth, async (req, res) => {
-
-    const findReview = await Review.findByPk(req.params.reviewId);
     const { review, stars } = req.body;
 
-    if (!findReview) {
-      return res
-        .status(404)
-        .json({
-          message: "Review couldn't be found",
-          statusCode: res.statusCode
-        });
-    };
-
     if (!review || !stars) {
-      return res
-        .status(400)
-        .json({
-          message: 'Validation Error',
-          statusCode: res.statusCode,
-          errors: [{
-            review: 'Review text is required',
-            stars: 'Stars must be an integer from 1 to 5'
-          }]
-        });
+        return res
+         .status(400)
+         .json({
+            message: "Validation error",
+            statusCode: res.statusCode,
+            errors: {
+              "review": "Review text is required",
+              "stars": "Stars must be an integer from 1 to 5",
+            }
+          });
     };
 
-    findReview.review = review;
-    findReview.stars = stars;
-    findReview.save();
+    const review1 = await Review.findByPk(req.params.reviewId);
 
-    return res.json(findReview);
-  });
+    if (!review1) {
+        return res
+         .status(404)
+         .json({
+            message: "Review couldn't be found",
+            statusCode: 404
+          });
+    };
+
+    review1.review = review;
+    review1.stars = stars;
+    review1.save();
+
+    return res.json(review1);
+});
 
 
 //Delete A Review
@@ -139,8 +139,8 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
         return res
          .status(404)
          .json({
-            "message": "Review couldn't be found",
-            "statusCode": 404
+            message: "Review couldn't be found",
+            statusCode: 404
           });
     };
 
