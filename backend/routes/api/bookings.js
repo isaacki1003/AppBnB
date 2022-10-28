@@ -46,8 +46,18 @@ router.get('/current', requireAuth, async (req, res) => {
 
 // Edit a Booking
 router.put('/:bookingId', requireAuth, async (req, res) => {
+  const booking = await Booking.findByPk(req.params.bookingId);
+
+  if (!booking) {
+    return res
+      .status(404)
+      .json({
+        message: "Booking couldn't be found",
+        statusCode: res.statusCode
+      });
+  };
+
     const { startDate, endDate } = req.body;
-    const booking = await Booking.findByPk(req.params.bookingId);
 
     const reqStartDate = new Date(startDate).getTime();
     const reqEndDate = new Date(endDate).getTime();
@@ -64,15 +74,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
           errors: [{
             endDate: 'endDate cannot come before startDate'
           }]
-        });
-    };
-
-    if (!booking) {
-      return res
-        .status(404)
-        .json({
-          message: "Booking couldn't be found",
-          statusCode: res.statusCode
         });
     };
 
