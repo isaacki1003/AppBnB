@@ -49,12 +49,11 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
     const booking = await Booking.findByPk(req.params.bookingId);
 
-
     const reqStartDate = new Date(startDate).getTime();
     const reqEndDate = new Date(endDate).getTime();
     const oldStartDate = new Date(booking.startDate).getTime();
     const oldEndDate = new Date(booking.endDate).getTime();
-    const startDateTime = new Date(booking.startDate).getTime()
+    const currentDate = new Date().getTime();
 
     if (reqEndDate <= reqStartDate) {
       return res
@@ -77,7 +76,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         });
     };
 
-    if (reqEndDate < oldEndDate) {
+    if (reqEndDate < currentDate) {
       return res
         .status(403)
         .json({
