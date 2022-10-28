@@ -71,11 +71,11 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 
     const images = await ReviewImage.findAll({
         where: {
-          reviewId: review.id
+          reviewId: req.params.reviewId
         }
     });
 
-    if (images.length >= 10) {
+    if (images.length > 9) {
         return res
          .status(403)
          .json({
@@ -85,14 +85,18 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     };
 
     const image = await ReviewImage.create({
-        reviewId: review.id,
+        reviewId: req.params.reviewId,
         url
+    });
+    const result  = await ReviewImage.findOne({
+      where: {
+        url:url
+      },
+      attributes:
+        ['id','url']
     });
 
-    return res.json({
-        id: image.id,
-        url
-    });
+    return res.json(result);
 });
 
 //Edit a Review
