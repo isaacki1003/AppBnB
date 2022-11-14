@@ -36,7 +36,7 @@ function SignupFormPage() {
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        firstName
+        First Name
         <input
           type="text"
           value={firstName}
@@ -45,7 +45,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        lastName
+        Last Name
         <input
           type="text"
           value={lastName}
