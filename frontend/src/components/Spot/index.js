@@ -17,8 +17,8 @@ export default function Spot({ spot }) {
                     alt={spot.name}
 					src={
 						spot.previewImage === 'No preview Image Yet'
-							? "https://www.nicepng.com/png/detail/244-2441173_not-available-png.png"
-							: spot.previewImage
+							? spot.previewImage
+							: "https://www.nicepng.com/png/detail/244-2441173_not-available-png.png" //THIS NEEDS TO BE FIXED
 					}
 				/>
 				<div>
@@ -27,11 +27,8 @@ export default function Spot({ spot }) {
 					</span>
 					<span>
 						{spot.avgRating ? spot.avgRating : ''}{' '}
-						{spot.avgRating === 0 ? (
-							<i class="fa-regular fa-star"></i>
-						) : (
-							<i class="fa-solid fa-star"></i>
-						)}
+						{/* {spot.avgRating === 0 ? (<i class="fa-regular fa-star"></i>) :
+						(<i class="fa-solid fa-star"></i>)} */}
 					</span>
 				</div>
 				<div>{name}</div>

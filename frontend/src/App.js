@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
+// import UpdateSpot from "./components/UpdateSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        {/* <Route path="/spots/:spotId/update">
+						<UpdateSpot />
+				</Route> */}
         <Route>
           Page Not Found
         </Route>
