@@ -23,7 +23,7 @@ export default function Spot({ spot }) {
 				/>
 				<div>
 					<span>
-						{spot.city}, {spot.state}
+						{spot.city}, {spot.state}{' '}
 					</span>
 					<span>
 						{spot.avgRating ? spot.avgRating : ''}{' '}
@@ -33,7 +33,7 @@ export default function Spot({ spot }) {
 				</div>
 				<div>{name}</div>
 				<div>
-					<span>${spot.price}</span> night
+					<span>${spot.price}</span> / night
 				</div>
 			</div>
 		</NavLink>
