@@ -1,0 +1,51 @@
+.star-input {
+    display: none;
+    cursor: pointer;
+}
+
+
+.text-rev:focus {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+    border-color: red;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.text-rev-subTitle {
+    font-weight: 350;
+    color: gray;
+}
+
+.text-rev-title {
+    font-weight: 500;
+}
+
+
+.button-rev {
+    width: 80%;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    background-color: red;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+}
+
+
+.text-rating {
+    margin-bottom: 0.5rem;
+}
+
+.form-r {
+    text-align: center;
+}
+
+.text-rev {
+    resize: none;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    width: 80%;
+    height: 150px;
+    padding: 12px;
+}

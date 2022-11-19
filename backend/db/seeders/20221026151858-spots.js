@@ -12,7 +12,7 @@ module.exports = {
         country: 'United States of America',
         lat: 35,
         lng: 21,
-        name: 'A-Frame Cabin w Views, Cedar Hot Tub & Sun Deck',
+        name: 'A-Frame Secluded Cabin',
         description: 'A-Frame gem with Lake rights tucked away in the trees.',
         price: 450
       },

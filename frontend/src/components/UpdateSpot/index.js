@@ -1,138 +1,146 @@
-// import React, { useEffect, useState } from 'react';
-// import { NavLink, useHistory, useParams } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getSpotDetails } from '../../store/spot';
-// import * as spotsActions from '../../store/spot';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSpotDetails } from '../../store/spot';
+import * as spotsActions from '../../store/spot';
+import './UpdateSpot.css';
 
-// export default function UpdateSpot() {
-// 	const { spotId } = useParams();
-// 	const dispatch = useDispatch();
-// 	const history = useHistory();
-// 	const spot = useSelector((state) => state.spots.SingleSpot);
+export default function UpdateSpot() {
+	const dispatch = useDispatch();
+	const { spotId } = useParams();
+	const history = useHistory();
 
-// 	// create spot controlled form state
-// 	const [address, setAddress] = useState('');
-// 	const [city, setCity] = useState('');
-// 	const [state, setState] = useState('');
-// 	const [country, setCountry] = useState('');
-// 	const [name, setName] = useState('');
-// 	const [description, setDescription] = useState('');
-// 	const [price, setPrice] = useState('');
-// 	// const [errors, setErrors] = useState({});
-// 	// const [hasSubmit, setHasSubmit] = useState(false);
+	const [address, setAddress] = useState('');
+	const [city, setCity] = useState('');
+	const [state, setState] = useState('');
+	const [country, setCountry] = useState('');
+	const [lat, setLat] = useState('');
+	const [lng, setLng] = useState('');
+	const [name, setName] = useState('');
+	const [description, setDescription] = useState('');
+	const [price, setPrice] = useState('');
 
-// 	useEffect(() => {
-// 		dispatch(getSpotDetails(spotId));
-// 	}, [dispatch]);
+	const spot = useSelector((state) => state.spots.SingleSpot);
 
-// 	useEffect(() => {
-// 		setAddress(spot.address);
-// 		setCity(spot.city);
-// 		setState(spot.state);
-// 		setCountry(spot.country);
-// 		setName(spot.name);
-// 		setDescription(spot.description);
-// 		setPrice(spot.price);
-// 	}, [spot]);
+	// const [errors, setErrors] = useState({});
+	// const [hasSubmit, setHasSubmit] = useState(false);
 
-// 	const hanldeUpdateSpot = async (e) => {
-// 		e.preventDefault();
-// 		// setHasSubmit(true);
+	useEffect(() => {
+		setAddress(spot.address);
+		setCity(spot.city);
+		setState(spot.state);
+		setCountry(spot.country);
+		setLat(spot.lat);
+		setLng(spot.lng);
+		setName(spot.name);
+		setDescription(spot.description);
+		setPrice(spot.price);
+	}, [spot]);
 
-// 		// setErrors({});
-// 		const SpotUpdateInfo = {
-// 			address,
-// 			city,
-// 			state,
-// 			country,
-// 			name,
-// 			description,
-// 			price
-// 		};
-// 		const updatedSpot = await dispatch(
-// 			spotsActions.UpdateSpot(SpotUpdateInfo, spotId)
-// 		).catch(async (res) => {
-// 			const data = await res.json();
-// 			// if (data && data.errors) {
-// 			// 	setErrors(data.errors);
-// 			// }
-// 		});
+	useEffect(() => {
+		dispatch(getSpotDetails(spotId));
+	}, [dispatch]);
 
-// 		//REDIRECT TO NEW SPOT IF EVERYTHING GO WELL!
-// 		if (updatedSpot) history.push(`/spots/${spotId}`);
-// 	};
 
-// 	const HandleDeleteSpot = async () => {
-// 		if (window.confirm('Please confirm you want to delete this listing!'))
-// 			await dispatch(spotsActions.DeleteSpot(spotId));
+	const UpdateSpot2 = async (e) => {
+		e.preventDefault();
+		// setHasSubmit(true);
 
-// 		history.push('/');
-// 	};
-// 	if (!Object.values(spot).length) return null;
-// 	return (
-// 		<div>
-// 			<div>
-// 				<NavLink to="/">
-// 					<img
-// 						src="https://mybnb-lucyluo.herokuapp.com/assets/logo-34e8587533b17eeb904517e28f490075173a3380205cde3cd6581bcae66d9c46.png"
-// 						alt="home log"
-// 						style={{ heigh: '50x', width: '50px' }}
-// 					/>
-// 				</NavLink>
-// 			</div>
-// 			<div>
-// 				Need to make some changes? to <br /> {spot.name}
-// 			</div>
-// 			<div>
-// 				<button onClick={HandleDeleteSpot}>
-// 					Remove spot from listing
-// 				</button>
-// 				<form id="create-form" onSubmit={hanldeUpdateSpot}>
-// 					<input
-// 						type="text"
-// 						value={name}
-// 						onChange={(e) => setName(e.target.value)}
-// 						placeholder="Name of your place"
-// 					/>
-// 					<input
-// 						type="text"
-// 						value={address}
-// 						onChange={(e) => setAddress(e.target.value)}
-// 						placeholder="Address"
-// 					/>
-// 					<input
-// 						type="text"
-// 						value={city}
-// 						onChange={(e) => setCity(e.target.value)}
-// 						placeholder="City"
-// 					/>
-// 					<input
-// 						type="text"
-// 						value={state}
-// 						onChange={(e) => setState(e.target.value)}
-// 						placeholder="State"
-// 					/>
-// 					<input
-// 						type="text"
-// 						value={country}
-// 						onChange={(e) => setCountry(e.target.value)}
-// 						placeholder="Country"
-// 					/>
-// 					<textarea
-// 						type="text"
-// 						value={description}
-// 						onChange={(e) => setDescription(e.target.value)}
-// 						placeholder="Tell everyone about your amazing place..."
-// 					/>
-// 					<input
-// 						type="number"
-// 						value={price}
-// 						onChange={(e) => setPrice(e.target.value)}
-// 						placeholder="Price per night"
-// 					/>
-// 					<button>Update</button>
-// 				</form>
-// 			</div>
-// 		</div>
-// 	);
-// }
+		// setErrors({});
+		const newInfo = {
+			address,
+			city,
+			state,
+			country,
+			lat,
+			lng,
+			name,
+			description,
+			price
+		};
+		const newSpot = await dispatch(
+			spotsActions.UpdateSpot(newInfo, spotId)
+		).catch(async (res) => {
+			const data = await res.json();
+			// if (data && data.errors) {
+			// 	setErrors(data.errors);
+			// }
+		});
+
+		if (newSpot) history.push(`/spots/${spotId}`);
+	};
+
+	const DeleteSpot2 = async () => {
+		if (window.confirm('Please confirm you want to delete this listing!'))
+			await dispatch(spotsActions.DeleteSpot(spotId));
+
+		history.push('/');
+	};
+
+	if (!Object.values(spot).length) return null;
+
+	return (
+		<div className="add-spot-wrapper">
+			<div className="update-spot-form">
+				Need to implement changes to <br /> {spot.name}?
+			</div>
+			<div className="add-spot-form-wrapper">
+				<button onClick={DeleteSpot2} className="delete-button">
+					Remove Spot!
+				</button>
+				<form id="create-form" onSubmit={UpdateSpot2}>
+					<input
+						type="text"
+						value={name}
+						className="add-spot-form-input"
+						onChange={(e) => setName(e.target.value)}
+						placeholder="Name of your place"
+					/>
+					<input
+						type="text"
+						value={address}
+						className="add-spot-form-input"
+						onChange={(e) => setAddress(e.target.value)}
+						placeholder="Address"
+					/>
+					<input
+						type="text"
+						value={city}
+						className="add-spot-form-input"
+						onChange={(e) => setCity(e.target.value)}
+						placeholder="City"
+					/>
+					<input
+						type="text"
+						value={state}
+						className="add-spot-form-input"
+						onChange={(e) => setState(e.target.value)}
+						placeholder="State"
+					/>
+					<input
+						type="text"
+						value={country}
+						className="add-spot-form-input"
+						onChange={(e) => setCountry(e.target.value)}
+						placeholder="Country"
+					/>
+					<textarea
+						type="text"
+						value={description}
+						className="add-spot-text-area"
+						onChange={(e) => setDescription(e.target.value)}
+						placeholder="Please describe your place..."
+					/>
+					<input
+						type="number"
+						value={price}
+						className="add-spot-form-input"
+						onChange={(e) => setPrice(e.target.value)}
+						placeholder="Price / night"
+					/>
+					<button className="submit-button">Update</button>
+				</form>
+			</div>
+		</div>
+	);
+}

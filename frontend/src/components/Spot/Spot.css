@@ -1,0 +1,46 @@
+.prev-image {
+    border-radius: 7px;
+    max-width: 100%;
+    min-height: 100%;
+    flex: 1;
+}
+
+.spot-wrapper {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 2%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.spot-row {
+    margin-bottom: 0.3rem;
+}
+
+.spot-r1 {
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-weight: 800;
+    display: flex;
+    font-size: 1em;
+    color: black;
+}
+
+.spot-r2 {
+    color: #717171ee;
+    font-size: 0.9em;
+}
+
+.spot-row4 > span {
+    font-weight: 400;
+    color: black;
+}
+
+.spot-row4 {
+    font-size: 0.9em;
+    color: black;
+    font-weight: 400;
+}

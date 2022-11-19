@@ -7,19 +7,18 @@ import useModalVariableContext from '../../context/ModalVariable';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormPage from '../SignupFormPage';
 import './Navigation.css';
-import logo from "../../assets/appbnb_logo.png"
+import logo from "../../assets/logo.png"
 
 function Navigation({ isLoaded }){
-  const { spotId } = useParams();
 	const sessionUser = useSelector((state) => state.session.user);
+	const { spotId } = useParams();
 	const [showMenu, setShowMenu] = useState(false);
-  const {
-		showLoginModal,
-		setShowLoginModal,
+	const {
 		showSignupModal,
-		setShowSignupModal
+		setShowSignupModal,
+		showLoginModal,
+		setShowLoginModal
 	} = useModalVariableContext();
-	let sessionLinks;
 
 	const openMenu = () => {
 		if (showMenu) return;
@@ -38,25 +37,35 @@ function Navigation({ isLoaded }){
 		return () => document.removeEventListener('click', closeMenu);
 	}, [showMenu]);
 
+	let sessionLinks;
+
 	if (sessionUser) {
 		sessionLinks = <ProfileButton user={sessionUser} />;
 	} else {
 		sessionLinks = (
-			<div className="nav-bar-loggedIn">
-				<button onClick={openMenu} className="navbar-button">
-					<i class="fa-solid fa-bars"></i>
-					<i class="fa-solid fa-circle-user"></i>
+			<div className="logged-in-nav">
+				<button className="button" onClick={openMenu}>
+					<img
+						src="https://www.pngrepo.com/png/358458/180/bars.png"
+						alt="self logo123"
+						style={{ height: '20px', width: '20px' , padding: '.03em'}}
+					/>
+					<img
+						src="https://www.pngrepo.com/png/24707/180/avatar.png"
+						alt="self logo213"
+						style={{ height: '20px', width: '20px' , padding: '.03em'}}
+					/>
 					{showMenu && (
-						<ul className="nav-dropped-down">
+						<ul className="drop-down">
 							<li
-								className="nav-dropped-down-li"
 								onClick={() => setShowLoginModal(true)}
+								className="log-out"
 							>
 								Log In
 							</li>
 							<li
-								className="nav-dropped-down-li"
 								onClick={() => setShowSignupModal(true)}
+								className="log-out"
 							>
 								Sign Up
 							</li>
@@ -77,18 +86,21 @@ function Navigation({ isLoaded }){
 		);
 	}
 
+
 	return (
-		<div>
-			<div>
+		<div className={`nav-wrapper`}>
+			<div className={`details ${spotId ? 'width' : ''}`}>
 				<NavLink exact to="/">
 					<img
 						src={logo}
+						alt="sahdf"
 						style={{
-							height: '45px',
-							width: '100px',
 							display: 'flex',
 							alignItems: 'center',
-							marginTop: '10px'
+							height: '50px',
+							width: '150px',
+							marginTop: '10px',
+							marginLeft: '10px'
 						}}
 					/>
 				</NavLink>
