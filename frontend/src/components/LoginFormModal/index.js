@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import useModalVariableContext from '../../context/ModalVariable';
+import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -9,7 +10,6 @@ function LoginFormModal() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [hasSubmited, setHasSubmited] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ function LoginFormModal() {
 		e.preventDefault();
 
 		return dispatch(
-			sessionActions.login({ credential: 'hoonki', password: 'winteR1003' })
+			sessionActions.login({ credential: 'Demo-lition', password: 'password' })
 		)
 			.then(() => setShowLoginModal(false))
 			.catch(async (res) => {
@@ -43,10 +43,7 @@ function LoginFormModal() {
 	};
 
   return (
-    <div>
-			{/* <p onClick={() => setShowLoginModal(false)}>
-				x
-			</p> */}
+    <div className="login-wrapper">
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -61,6 +58,7 @@ function LoginFormModal() {
             placeholder="Username or Email"
             onChange={(e) => setCredential(e.target.value)}
             required
+            className="box-input-log"
           />
         </label>
         <label>
@@ -71,19 +69,20 @@ function LoginFormModal() {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="box-input-log"
           />
         </label>
-        <button type="submit">Log In</button>
-        <button onClick={demoUser}>
+        <button className="login-submit-button" type="submit">Log In</button>
+        <button onClick={demoUser} className="login-submit-button">
             Demo-User
         </button>
       </form>
-      <p>
+      <p className="login-toggle">
           Don't have an account?{' '}
           <span
             style={{
-              cursor: 'pointer',
               fontSize: '14px',
+              cursor: 'pointer',
               textDecoration: 'underline'
             }}
             onClick={switchToSignup}

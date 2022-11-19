@@ -16,7 +16,6 @@ const removeUser = () => {
   };
 };
 
-//Thunks
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
   const response = await csrfFetch('/api/session', {
@@ -51,7 +50,7 @@ export const signup = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data.user));
+  dispatch(setUser(data));
   return response;
 };
 
@@ -62,8 +61,6 @@ export const logout = () => async (dispatch) => {
   dispatch(removeUser());
   return response;
 };
-
-//Reducer
 
 const initialState = { user: null };
 

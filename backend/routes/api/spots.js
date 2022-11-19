@@ -366,7 +366,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) =>{
 
 //Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async (req, res) => {
-    const { url, preview } = req.body;
+  const { url, preview } = req.body;
 
   const spot = await Spot.findByPk(req.params.spotId);
 

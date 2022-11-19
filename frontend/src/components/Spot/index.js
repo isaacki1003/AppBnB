@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import "./Spot.css";
 
 export default function Spot({ spot }) {
 	const names = spot.name.split(' ');
@@ -12,27 +13,35 @@ export default function Spot({ spot }) {
 
 	return (
 		<NavLink to={`/spots/${spot.id}`}>
-			<div>
+			<div className="spot-wrapper">
 				<img
+				className="prev-image"
                     alt={spot.name}
 					src={
 						spot.previewImage === 'No preview Image Yet'
-							? spot.previewImage
-							: "https://www.nicepng.com/png/detail/244-2441173_not-available-png.png" //THIS NEEDS TO BE FIXED
+							? "https://st4.depositphotos.com/14953852/22772/v/1600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg"
+							:  spot.previewImage
 					}
 				/>
-				<div>
+				<div className="spot-r1 spot-row">
 					<span>
 						{spot.city}, {spot.state}{' '}
 					</span>
 					<span>
 						{spot.avgRating ? spot.avgRating : ''}{' '}
-						{/* {spot.avgRating === 0 ? (<i class="fa-regular fa-star"></i>) :
-						(<i class="fa-solid fa-star"></i>)} */}
+						{spot.avgRating === "Not yet rated" || spot.avgRating === 0 ? (
+							" "
+							) : (
+							<img
+								src="https://www.pngrepo.com/png/6977/180/star.png"
+								alt="message logo"
+								style={{ height: '12px', width: '12px' }}
+							/>
+							)}
 					</span>
 				</div>
-				<div>{name}</div>
-				<div>
+				<div className="spot-r2 spot-row">{name}</div>
+				<div className="spot-row4 spot-row">
 					<span>${spot.price}</span> / night
 				</div>
 			</div>

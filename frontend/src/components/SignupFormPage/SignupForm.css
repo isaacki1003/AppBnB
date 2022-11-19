@@ -1,0 +1,103 @@
+.signup-form-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 120px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 400px;
+    height: 520px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border: 1px solid rgb(160, 155, 155);
+    border-radius: 15px;
+    background-color: white;
+}
+
+.input2 {
+    width: 100%;
+    height: 35px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid gray;
+    text-indent: 10px;
+}
+
+.signup-submit {
+    height: 40px;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    height: 30px;
+    color: white;
+    background-color: red;
+}
+
+.error1 {
+    position: absolute;
+        top: 38px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error2 {
+    position: absolute;
+        top: 93px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error3 {
+    position: absolute;
+        top: 148px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error4 {
+    position: absolute;
+        top: 203px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error5 {
+    position: absolute;
+        top: 258px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error6 {
+    position: absolute;
+        top: 313px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error7 {
+    position: absolute;
+        top: 368px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error8 {
+    position: absolute;
+        top: 423px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
