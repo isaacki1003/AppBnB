@@ -33,7 +33,7 @@ export default function SpotReviews({ spot }) {
 	});
 
 	return (
-		<div className="spot-wrapper-revs" id="all-revs">
+		<div className="spot-wrapper-revs">
 			<div className="rev-title">
 				{spot.avgStarRating ? (
 					<img

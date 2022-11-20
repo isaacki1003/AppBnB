@@ -118,7 +118,7 @@ export default function SpotInfo({ spot, name }) {
 						<div>Cleaning fee</div>
 						<div>$300</div>
 					</div>
-					<div className="wrapper-fee serviceFee">
+					<div className="wrapper-fee feeS">
 						<div>Service fee</div>
 						<div>${fee}</div>
 					</div>
