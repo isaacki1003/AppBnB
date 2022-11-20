@@ -1,7 +1,7 @@
 # `AppBnB`
 
-[AppBnB](https://nhut-airbnb-api.herokuapp.com/) is a webpage inspired by [airbnb](https://www.airbnb.com/).
-AppBnB allow for the creation of, deletion of and updating of listings along with the creation and deletion of reviews.
+[AppBnB](https://appbnb1.herokuapp.com/) is a web application inspired by [Airbnb](https://www.airbnb.com/), that provides an online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities.
+AppBnB allow one to create, read, update and delete listings as well as create, read, and delete reviews.
 
 ## Tech Stack
 
@@ -15,10 +15,17 @@ AppBnB allow for the creation of, deletion of and updating of listings along wit
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white)
 
-### Database and Host:
+### Database:
 
 ![Postgresql](https://img.shields.io/badge/Postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+
+### Hosting:
+
 ![HEROKU](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=Heroku&logoColor=white)
+
+### Landing Page 👀
+
+
 
 ## Installation
 
