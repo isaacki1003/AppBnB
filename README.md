@@ -47,7 +47,7 @@ git clone https://github.com/isaacki1003/AppBnB.git
 npm install
 ```
 
-- Run the following code to in the backend/ folder to create database.
+- Run the following code to in the backend folder to create database.
 
 ```sh
 npx dotenv sequelize db:migrate
@@ -57,7 +57,7 @@ npx dotenv sequelize db:migrate
 npx dotenv sequelize db:seed:all
 ```
 
-- cd into both frontend and backend/src folders and run backend before frontend.
+- cd into both frontend and backend folders but run backend before frontend.
 
 ```sh
 npm start
@@ -67,7 +67,7 @@ npm start
 
 - [Backend Routes (API Documentation)](https://github.com/isaacki1003/AppBnB/wiki/API-Routes)
 - [Database Schema](https://github.com/isaacki1003/AppBnB/wiki/API-Routes)
-- [Feature List](https://github.com/isaacki1003/AppBnB/wiki/Features-List)
+- [Features List](https://github.com/isaacki1003/AppBnB/wiki/Features-List)
 - [Redux Store Shape](https://github.com/isaacki1003/AppBnB/wiki/Redux-Store-Shape)
 
 

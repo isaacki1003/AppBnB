@@ -12,7 +12,8 @@ export default function SpotReviews({ spot }) {
 	const { spotId } = useParams();
 	const dispatch = useDispatch();
 	const spotReviews = useSelector((state) => Object.values(state.reviews.spot));
-	const sessionUser = useSelector((state) => state.session.user);
+	const userSess
+	 = useSelector((state) => state.session.user);
 
 	const { showReviewModal, setShowReviewModal } = useModalVariableContext();
 
@@ -23,9 +24,12 @@ export default function SpotReviews({ spot }) {
 	if (!spotReviews) return null;
 
 	let showRev = false;
-	if (sessionUser && sessionUser.id !== spot.Owner.id) showRev = true;
+	if (userSess
+		 && userSess
+		.id !== spot.Owner.id) showRev = true;
 	spotReviews.forEach((review) => {
-		if (sessionUser?.id === review.userId) showRev = false;
+		if (userSess
+			?.id === review.userId) showRev = false;
 	});
 
 	return (
@@ -67,7 +71,7 @@ export default function SpotReviews({ spot }) {
 				{spotReviews?.map((review, i) => (
 					<div className="wrapper-rev" key={i}>
 						<div className="row-rev1">
-							<div class="rever">
+							<div className="rever">
 								<img
 									src="https://www.pngrepo.com/png/168246/180/avatar.png"
 									style={{ height: '50px', width: '50px' }}
@@ -75,16 +79,18 @@ export default function SpotReviews({ spot }) {
 								/>
 								<div className="date-name-rev">
 									<div className="rever-name">{review.User.firstName}</div>
-									<div className="review-date">
+									<div className="rev-date">
 										{new Date(review.createdAt)
 											.toDateString()
 											.split(' ')
-											.filter((el, j) => j % 2 !== 0)
+											.filter((el, j) => j === 1 || j === 3)
 											.join(' ')}
 									</div>
 								</div>
 							</div>
-							{sessionUser && sessionUser?.id === review.userId && (
+							{userSess
+							 && userSess
+							?.id === review.userId && (
 								<DeleteReview reviewId={review.id} spotId={spotId} />
 							)}
 						</div>

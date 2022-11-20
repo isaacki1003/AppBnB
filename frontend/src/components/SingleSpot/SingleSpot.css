@@ -91,10 +91,11 @@
 .single-spot-wrapper-image {
     display: flex;
     min-width: 100%;
-    border-radius: 11px;
+    border-radius: 18px;
     overflow: hidden;
     max-height: 50vh;
     gap: 0.36rem;
+    align-items: center;
 }
 
 .single-spot-prev-img{
@@ -104,18 +105,20 @@
 }
 
 .single-spot-wrapper {
-    box-sizing: border-box;
-    margin-top: 111px;
-    max-width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    margin-right: 6rem;
+    margin-left: 6rem;
 }
 
-/* .fix-sides {
-    left: 50%;
-    justify-content: center;
-    width: 75%;
-    display: flex;
-    justify-self: flex-start;
-} */
+.title-help {
+    box-sizing: border-box;
+    margin-top: 111px;
+    margin-bottom: 0;
+    /* max-width: 75%; */
+}
+
 
 .single-spot-prev {
     flex-grow: 1;
@@ -135,6 +138,7 @@
     width: 49%;
     height: 49%;
     flex-grow: 1;
+    border-radius: 14px;
  }
 
  .wrapper-fee{
@@ -150,7 +154,7 @@
     justify-content: right;
     min-width: 35%;
     padding-bottom: 2rem;
-    margin-top: 4rem;
+    margin-top: 3.3rem;
     font-size: 1.5rem;
 }
 
