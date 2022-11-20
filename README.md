@@ -57,7 +57,7 @@ npx dotenv sequelize db:migrate
 npx dotenv sequelize db:seed:all
 ```
 
-- cd into frontend and backend/src folders(both must be running).
+- cd into both frontend and backend/src folders and run backend before frontend.
 
 ```sh
 npm start
