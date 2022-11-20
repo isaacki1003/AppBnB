@@ -8,12 +8,12 @@ AppBnB allow one to create, read, update and delete listings as well as create, 
 ### Frameworks, Platforms, and Libararies:
 
 ![Javascript](https://img.shields.io/badge/Javascript%20-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
-![REACT](https://img.shields.io/badge/REACT%20-61DAFB?style=for-the-badge&logo=REACT&logoColor=white)
-![EXPRESS](https://img.shields.io/badge/Express%20-000000?style=for-the-badge&logo=REACT&logoColor=white)
-![REDUX](https://img.shields.io/badge/Redux%20-764ABC?style=for-the-badge&logo=Redux&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.Js%20-339933?style=for-the-badge&logo=Node.js&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.Js%20-339933?style=for-the-badge&logo=Node.js&logoColor=white)
+![EXPRESS](https://img.shields.io/badge/Express%20-000000?style=for-the-badge&logo=REACT&logoColor=white)
+![REACT](https://img.shields.io/badge/REACT%20-61DAFB?style=for-the-badge&logo=REACT&logoColor=white)
+![REDUX](https://img.shields.io/badge/Redux%20-764ABC?style=for-the-badge&logo=Redux&logoColor=white)
 
 ### Database:
 
@@ -25,7 +25,7 @@ AppBnB allow one to create, read, update and delete listings as well as create, 
 
 ### Landing Page 👀
 
-
+![alt text](https://github.com/isaacki1003/AppBnB/blob/main/landing-page.png?raw=true)
 
 ## Installation
 
@@ -69,3 +69,8 @@ npm start
 - [Database Schema](https://github.com/isaacki1003/AppBnB/wiki/API-Routes)
 - [Feature List](https://github.com/isaacki1003/AppBnB/wiki/Features-List)
 - [Redux Store Shape](https://github.com/isaacki1003/AppBnB/wiki/Redux-Store-Shape)
+
+
+## Contact
+Isaac Ki - isaacki1003@gmail.com
+Project Link: https://github.com/isaacki1003/AppBnB
