@@ -16,7 +16,7 @@ export default function SpotInfo({ spot, name }) {
 				<div className="wrapper-information">
 					<div className="information">
 						<img
-							src="https://www.pngrepo.com/png/318342/180/lock.png"
+							src="https://www.pngrepo.com/png/25394/180/lock.png"
 							alt="self logo"
 							style={{ height: '29px', width: '29px' }}
 						/>

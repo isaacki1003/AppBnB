@@ -7,13 +7,18 @@
     right: 50%;
     transform: translateX(50%);
     width: 400px;
-    height: 520px;
+    height: 700px;
     padding-top: 30px;
     padding-right: 30px;
     padding-left: 30px;
     border: 1px solid rgb(160, 155, 155);
     border-radius: 15px;
     background-color: white;
+}
+
+.input3 {
+    margin-top: 3.5em;
+    margin-bottom: auto;;
 }
 
 .input2 {

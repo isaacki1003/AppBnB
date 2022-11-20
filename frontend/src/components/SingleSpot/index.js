@@ -39,11 +39,13 @@ export default function SingleSpot() {
 
 	return (
 		<div className="single-spot-wrapper">
-			<div className="fix-sides-2">
+			<div className="fix-sides">
 				<SpotTitle spot={spot} />
 			</div>
-			<div className="fix-sides">
+			<div>
 				<Images otherImgs={otherImgs} previewImage={previewImage} />
+			</div>
+			<div className="fix-sides">
 				<SpotInfo name={name} spot={spot} />
 				<SpotReviews spot={spot} />
 			</div>

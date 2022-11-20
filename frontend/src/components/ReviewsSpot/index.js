@@ -29,8 +29,8 @@ export default function SpotReviews({ spot }) {
 	});
 
 	return (
-		<div className="spot-reviews-wrapper" id="all-revs">
-			<div className="review-title">
+		<div className="spot-wrapper-revs" id="all-revs">
+			<div className="rev-title">
 				{spot.avgStarRating ? (
 					<img
 					src="https://www.pngrepo.com/png/6977/180/star.png"
@@ -51,7 +51,7 @@ export default function SpotReviews({ spot }) {
 			{showRev && (
 				<button
 					type="button"
-					className="create-new-review"
+					className="rev-add-new"
 					onClick={() => setShowReviewModal(true)}
 				>
 					{' '}
@@ -63,18 +63,18 @@ export default function SpotReviews({ spot }) {
 					<SpotReviewForm />
 				</Modal>
 			)}
-			<div className="reviews-wrapper">
+			<div className="wrapper-revs">
 				{spotReviews?.map((review, i) => (
-					<div className="review-wrapper" key={i}>
-						<div className="review-row1">
-							<div class="reviewer">
+					<div className="wrapper-rev" key={i}>
+						<div className="row-rev1">
+							<div class="rever">
 								<img
-									src="https://img.icons8.com/external-others-inmotus-design/67/000000/external-User-virtual-keyboard-others-inmotus-design-6.png"
+									src="https://www.pngrepo.com/png/168246/180/avatar.png"
 									style={{ height: '50px', width: '50px' }}
 									alt="temp1"
 								/>
-								<div className="review-name-date">
-									<div className="reviewer-name">{review.User.firstName}</div>
+								<div className="date-name-rev">
+									<div className="rever-name">{review.User.firstName}</div>
 									<div className="review-date">
 										{new Date(review.createdAt)
 											.toDateString()
@@ -88,7 +88,7 @@ export default function SpotReviews({ spot }) {
 								<DeleteReview reviewId={review.id} spotId={spotId} />
 							)}
 						</div>
-						<div className="review-row2">{review.review}</div>
+						<div className="row-rev2">{review.review}</div>
 					</div>
 				))}
 			</div>

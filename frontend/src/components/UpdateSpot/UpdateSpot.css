@@ -26,3 +26,9 @@
     background-color: red;
     background-image: red;
 }
+
+
+.update-error {
+    color: red;
+    margin-bottom: 1em;
+}

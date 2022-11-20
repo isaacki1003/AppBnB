@@ -4,11 +4,6 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       Spot.belongsTo(
         models.User,
@@ -31,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       );
     }
   }
+
   Spot.init({
     ownerId: {
       type: DataTypes.INTEGER,
@@ -39,19 +35,56 @@ module.exports = (sequelize, DataTypes) => {
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: false
+      unique: true,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'An address is required.'
+        },
+        len: {
+          args: [1, 250],
+          msg: 'Please provide an address.'
+        }
+      }
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'A city is required.'
+        },
+        len: {
+          args: [1, 250],
+          msg: 'Please provide a city.'
+        }
+      }
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'A state is required.'
+        },
+        len: {
+          args: [1, 250],
+          msg: 'Please provide a state.'
+        }
+      }
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'A country is required.'
+        },
+        len: {
+          args: [1, 250],
+          msg: 'Please provide a country.'
+        }
+      }
     },
     lat: {
       type: DataTypes.DECIMAL,
@@ -63,15 +96,45 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'A name is required.'
+        },
+        len: {
+          args: [6, 300],
+          msg: 'Please provide a name (less than 300 characters).'
+        }
+      }
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'A description is required.'
+        },
+        len: {
+          args: [30, 300],
+          msg: 'Please provide a description (less than 300 characters).'
+        }
+      }
     },
     price: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isNumeric: {
+          msg: 'Price must be a number.'
+        },
+        min: {
+          args: [1],
+          msg: 'Price cannot be less than $1'
+        },
+        notNull: {
+          msg: 'A price is required'
+        }
+      }
     },
   }, {
     sequelize,

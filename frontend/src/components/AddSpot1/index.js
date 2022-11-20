@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getSpotDetails } from '../../store/spot';
 import { useDispatch } from "react-redux";
 import * as spotsActions from '../../store/spot';
@@ -21,14 +21,14 @@ export default function AddSpot1() {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [price, setPrice] = useState('');
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 	const [spotId, setSpotId] = useState('');
 	const [submitted, setSubmitted] = useState(false);
 
 	const [spotForm, setSpotForm] = useState(true);
 	const [imageForm, setImageForm] = useState(false);
 
-	const fillWithImages = (idx) => (e) => {
+	const imageFill = (idx) => (e) => {
 		let newArray = [...otherImgs];
 		newArray[idx] = e.target.value;
 
@@ -36,10 +36,10 @@ export default function AddSpot1() {
 	};
 
 	let newSpot;
-	const handleFormInfo = async (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault();
 		setSubmitted(true);
-		setErrors({});
+		setErrors([]);
 		const spotInfo = {
 			address,
 			city,
@@ -110,29 +110,25 @@ export default function AddSpot1() {
 
 	return (
 		<div className="add-spot-wrapper">
-			{/* NAVLINK img to redirect user back home */}
-			<div className="add-spot-navlink">
-				<NavLink to="/">
-					<img
-						src="https://mybnb-lucyluo.herokuapp.com/assets/logo-34e8587533b17eeb904517e28f490075173a3380205cde3cd6581bcae66d9c46.png"
-						alt="home log"
-						style={{ heigh: '50x', width: '50px' }}
-					/>
-				</NavLink>
-			</div>
 			{spotForm && (
 				<div id="add-spot-title">
 					Appbnb it. <br />
-					Make your spot available to the world.
+					Share your spot to the world.
 				</div>
 			)}
 			{imageForm && (
-				<div id="add-spot-title">Let add some images to your place!</div>
+				<div id="add-spot-title">
+					Upload a preview image. <br />
+					Please provide the URL.
+				</div>
 			)}
 			<div className="add-spot-form-wrapper">
 				{spotForm && (
 					<>
-						<form id="create-form" onSubmit={handleFormInfo}>
+						<form id="create-form" onSubmit={onSubmit}>
+							<ul className="update-error">
+								{errors.map((error, idx) => <li key={idx}>{error}</li>)}
+							</ul>
 							<input
 								type="text"
 								value={name}
@@ -140,11 +136,6 @@ export default function AddSpot1() {
 								onChange={(e) => setName(e.target.value)}
 								placeholder="Name of your place"
 							/>
-							<div className="spot-error1 error">
-								{submitted && (
-									<span>{errors.name ? errors.name : <div></div>}</span>
-								)}
-							</div>
 							<input
 								type="text"
 								value={address}
@@ -152,11 +143,6 @@ export default function AddSpot1() {
 								onChange={(e) => setAddress(e.target.value)}
 								placeholder="Address"
 							/>
-							<div className="spot-error2 error">
-								{submitted && (
-									<span>{errors.address ? errors.address : null}</span>
-								)}
-							</div>
 							<input
 								type="text"
 								value={city}
@@ -164,9 +150,6 @@ export default function AddSpot1() {
 								onChange={(e) => setCity(e.target.value)}
 								placeholder="City"
 							/>
-							<div className="spot-error3 error">
-								{submitted && <span>{errors.city ? errors.city : null}</span>}
-							</div>
 							<input
 								type="text"
 								value={state}
@@ -174,9 +157,6 @@ export default function AddSpot1() {
 								onChange={(e) => setState(e.target.value)}
 								placeholder="State"
 							/>
-							<div className="spot-error4 error">
-								{submitted && <span>{errors.state ? errors.state : null}</span>}
-							</div>
 							<input
 								type="text"
 								value={country}
@@ -184,31 +164,6 @@ export default function AddSpot1() {
 								onChange={(e) => setCountry(e.target.value)}
 								placeholder="Country"
 							/>
-							<div className="spot-error5 error">
-								{submitted && (
-									<span>{errors.country ? errors.country : null}</span>
-								)}
-							</div>
-							{/* <input
-								type="number"
-								value={lat}
-								className="add-spot-form-input"
-								onChange={(e) => setLat(e.target.value)}
-								placeholder="Latitude"
-							/>
-							<div className="spot-error6 error">
-								{submitted && <span>{errors.lat ? errors.lat : null}</span>}
-							</div>
-							<input
-								type="number"
-								value={lng}
-								className="add-spot-form-input"
-								onChange={(e) => setLng(e.target.value)}
-								placeholder="Longitude"
-							/>
-							<div className="spot-error7 error">
-								{submitted && <span>{errors.lng ? errors.lng : null}</span>}
-							</div> */}
 							<textarea
 								type="text"
 								value={description}
@@ -216,11 +171,6 @@ export default function AddSpot1() {
 								onChange={(e) => setDescription(e.target.value)}
 								placeholder="Please describe your spot..."
 							/>
-							<div className="spot-error6 error">
-								{submitted && (
-									<span>{errors.description ? errors.description : null}</span>
-								)}
-							</div>
 							<input
 								type="number"
 								value={price}
@@ -230,9 +180,6 @@ export default function AddSpot1() {
 								min="1"
 								max="5"
 							/>
-							<div className="spot-error7 error">
-								{submitted && <span>{errors.price ? errors.price : null}</span>}
-							</div>
 							<button className="submit-button">
 								Now, let's add a couple photos!
 							</button>
@@ -243,27 +190,25 @@ export default function AddSpot1() {
 				{imageForm && (
 					<>
 						<form id="create-form" onSubmit={onSubImg}>
+							<ul className="update-error">
+								{errors.map((error, idx) => <li key={idx}>{error}</li>)}
+							</ul>
 							<input
-								className="spot-form-input"
+								className="add-spot-form-input"
 								type="text"
 								value={previewImage}
 								onChange={(e) => setPreviewImage(e.target.value)}
 								placeholder="Preview Image"
 							/>
-							<div className="spot-error7 error">
-								{submittedImg && (
-									<span>{imgErrors.url ? imgErrors.url : null}</span>
-								)}
-							</div>
 							{otherImgs.map((item, i) => {
 								return (
 									<input
 										type="url"
 										key={i}
 										value={item}
-										className="spot-form-input image-form-input"
-										onChange={fillWithImages(i)}
-										placeholder="Additional Images (not required)"
+										className="add-spot-form-input"
+										onChange={imageFill(i)}
+										placeholder="Extra Images (not required)"
 									/>
 								);
 							})}

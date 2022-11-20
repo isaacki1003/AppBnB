@@ -55,76 +55,78 @@ function SignupFormPage() {
   return (
     <div className="signup-form-wrapper">
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className="error">
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        <label>
-          First Name
-          <input
-            type="text"
-            value={firstName}
-            className="input2"
-            placeholder="First Name"
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Last Name
-          <input
-            type="text"
-            value={lastName}
-            className="input2"
-            placeholder="Last Name"
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            className="input2"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            className="input2"
-            placeholder="Username"
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            className="input2"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            className="input2"
-            placeholder="Confirm Password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button className="signup-submit" type="submit">Sign Up</button>
+        <div className="input3">
+          <label>
+            First Name
+            <input
+              type="text"
+              value={firstName}
+              className="input2"
+              placeholder="First Name"
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Last Name
+            <input
+              type="text"
+              value={lastName}
+              className="input2"
+              placeholder="Last Name"
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Email
+            <input
+              type="text"
+              value={email}
+              className="input2"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Username
+            <input
+              type="text"
+              value={username}
+              className="input2"
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              className="input2"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Confirm Password
+            <input
+              type="password"
+              value={confirmPassword}
+              className="input2"
+              placeholder="Confirm Password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button className="signup-submit" type="submit">Sign Up</button>
+        </div>
       </form>
       <p className="login-toggle">
 				Already have an account?{' '}

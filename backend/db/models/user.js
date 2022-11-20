@@ -62,17 +62,32 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: {
+          args: [1, 25],
+          msg: 'First name must be less than 25 characters.'
+        }
+      }
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: {
+          args: [1, 25],
+          msg: 'Last name must be less than 25 characters.'
+        }
+      }
     },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [4, 30],
+        len: {
+          args: [4, 30],
+          msg: 'Username must be between 4 and 30 characters.'
+        },
         isNotEmail(val) {
           if (Validator.isEmail(val)) {
             throw new Error("Cannot be an email");
@@ -83,8 +98,15 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        args: true,
+        msg: 'Email address has been taken.'
+      },
       validate: {
-        len: [3, 256],
+        len: {
+          args: [6, 256],
+          msg: 'Email must be between 6 and 256 characters.'
+        },
         isEmail: true
       }
     },
