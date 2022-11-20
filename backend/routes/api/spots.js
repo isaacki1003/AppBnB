@@ -1,5 +1,8 @@
 const express = require('express');
 
+const { validateSpot, validateReview, handleValidationErrors } = require('../../utils/validation');
+const { validationResult } = require('express-validator');
+
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { Booking, Review, ReviewImage, Spot, SpotImage, User } = require('../../db/models');
 
@@ -245,8 +248,20 @@ router.get('/', async (req, res) => {
 });
 
 //Create a Review for a Spot based on the Spot's id
-router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
+
+    const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
+      return `${msg}`;
+    };
+    const result = validationResult(req).formatWith(errorFormatter);
+    if (!result.isEmpty()) {
+      return res.json({
+        message: "Validation Error",
+        statusCode: 400,
+        errors: result.mapped()
+      });
+    }
 
     if (!spot) {
         return res
@@ -259,18 +274,18 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
     const { review, stars } = req.body;
 
-    if (!review || !stars ) {
-        return res
-          .status(404)
-          .json({
-            message: 'Validation Error',
-            statusCode: res.statusCode,
-            errors: [{
-              review: 'Review text is required',
-              stars: 'Stars must be an integer from 1 to 5'
-            }]
-          })
-      };
+    // if (!review || !stars ) {
+    //     return res
+    //       .status(404)
+    //       .json({
+    //         message: 'Validation Error',
+    //         statusCode: res.statusCode,
+    //         errors: [{
+    //           review: 'Review text is required',
+    //           stars: 'Stars must be an integer from 1 to 5'
+    //         }]
+    //       })
+    // };
 
       const exists = await Review.findOne({
         where: {
@@ -393,28 +408,44 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 });
 
 //Create a Spot
-router.post('/', requireAuth, async (req, res) => {
+router.post('/', requireAuth, validateSpot, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
-    if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-        return res
-          .status(400)
-          .json({
-            message: "Validation Error",
-            statusCode: res.statusCode,
-            errors: [{
-                "address": "Street address is required",
-                "city": "City is required",
-                "state": "State is required",
-                "country": "Country is required",
-                "lat": "Latitude is not valid",
-                "lng": "Longitude is not valid",
-                "name": "Name must be less than 50 characters",
-                "description": "Description is required",
-                "price": "Price per day is required"
-            }]
-        });
+    const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
+      return `${msg}`;
     };
+    const result = validationResult(req).formatWith(errorFormatter);
+    if (!result.isEmpty()) {
+      return res.json({
+        message: "Validation Error",
+        statusCode: 400,
+        errors: result.mapped()
+      });
+    }
+
+    if (address.length < 3 ) {
+      const err = new Error('Please provide a valid address');
+      err.status = 401;
+      err.title = 'Please provide a valid address';
+      err.errors = ["Please provide a valid address"];
+      return next(err);
+    }
+
+    if (name.length < 6) {
+      const err = new Error('Please provide a longer name (6 characters or more)');
+      err.status = 401;
+      err.title = 'Please provide a longer name (6 characters or more)';
+      err.errors = ["Please provide a longer name (6 characters or more)"];
+      return next(err);
+    }
+
+    if (description.length < 30) {
+      const err = new Error('Please provide a longer description (30 characters or more)');
+      err.status = 401;
+      err.title = 'Please provide a longer description (30 characters or more)';
+      err.errors = ["Please provide a longer description (30 characters or more)"];
+      return next(err);
+    }
 
     const newSpot = await Spot.create({
         ownerId: req.user.id,
@@ -433,26 +464,45 @@ router.post('/', requireAuth, async (req, res) => {
 });
 
   //Edit a Spot
-  router.put('/:spotId', requireAuth, async (req, res) => {
+  router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
-    if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-        return res.status(400).json({
-          message: 'Validation Error',
-          statusCode: 400,
-          errors: [{
-            address: 'Street address is required',
-            city: 'City is required',
-            state: 'State is required',
-            country: 'Country is required',
-            lat: 'Latitude is not valid',
-            lng: 'Longitude is not valid',
-            name: 'Name must be less than 50 characters',
-            description: 'Description is required',
-            price: 'Price per day is required'
-          }]
-        });
+    const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
+      return `${msg}`;
     };
+    const result = validationResult(req).formatWith(errorFormatter);
+    if (!result.isEmpty()) {
+      return res.json({
+        message: "Validation Error",
+        statusCode: 400,
+        errors: result.mapped()
+      });
+    }
+
+    if (address.length < 3 ) {
+      const err = new Error('Please provide a valid address');
+      err.status = 401;
+      err.title = 'Please provide a valid address';
+      err.errors = ["Please provide a valid address"];
+      return next(err);
+    }
+
+    if (name.length < 6) {
+      const err = new Error('Please provide a longer name (6 characters or more)');
+      err.status = 401;
+      err.title = 'Please provide a longer name (6 characters or more)';
+      err.errors = ["Please provide a longer name (6 characters or more)"];
+      return next(err);
+    }
+
+    if (description.length < 30) {
+      const err = new Error('Please provide a longer description (30 characters or more)');
+      err.status = 401;
+      err.title = 'Please provide a longer description (30 characters or more)';
+      err.errors = ["Please provide a longer description (30 characters or more)"];
+      return next(err);
+    }
+
 
     const spot = await Spot.findByPk(req.params.spotId);
 

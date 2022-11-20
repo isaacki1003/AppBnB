@@ -22,7 +22,7 @@ export default function UpdateSpot() {
 
 	const spot = useSelector((state) => state.spots.SingleSpot);
 
-	// const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 	// const [hasSubmit, setHasSubmit] = useState(false);
 
 	useEffect(() => {
@@ -39,14 +39,14 @@ export default function UpdateSpot() {
 
 	useEffect(() => {
 		dispatch(getSpotDetails(spotId));
-	}, [dispatch]);
+	}, [dispatch, spotId]);
 
 
 	const UpdateSpot2 = async (e) => {
 		e.preventDefault();
 		// setHasSubmit(true);
 
-		// setErrors({});
+		setErrors([]);
 		const newInfo = {
 			address,
 			city,
@@ -62,16 +62,16 @@ export default function UpdateSpot() {
 			spotsActions.UpdateSpot(newInfo, spotId)
 		).catch(async (res) => {
 			const data = await res.json();
-			// if (data && data.errors) {
-			// 	setErrors(data.errors);
-			// }
+			if (data && data.errors) {
+				setErrors(data.errors);
+			}
 		});
 
 		if (newSpot) history.push(`/spots/${spotId}`);
 	};
 
 	const DeleteSpot2 = async () => {
-		if (window.confirm('Please confirm you want to delete this listing!'))
+		if (window.confirm('Please confirm. This action cannot be undone.'))
 			await dispatch(spotsActions.DeleteSpot(spotId));
 
 		history.push('/');
@@ -89,6 +89,9 @@ export default function UpdateSpot() {
 					Remove Spot!
 				</button>
 				<form id="create-form" onSubmit={UpdateSpot2}>
+					<ul className="update-error">
+						{errors.map((error, idx) => <li key={idx}>{error}</li>)}
+					</ul>
 					<input
 						type="text"
 						value={name}

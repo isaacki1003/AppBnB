@@ -12,22 +12,22 @@ export default function SpotReviewForm() {
 	const [review, setReview] = useState('');
 	const [stars, setStars] = useState(null);
 	const [hover, setHover] = useState(null);
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 	const [hasSubmit, setHasSubmit] = useState(false);
 	const { setShowReviewModal } = useModalVariableContext();
 	const dispatch = useDispatch();
 
 	const handleReviewReloadData = async () => {
 		setShowReviewModal(false);
-		dispatch(reviewsActions.getReviewsBySpotId(spotId));
-		dispatch(spotsActions.getSpotDetails(spotId));
+		await dispatch(reviewsActions.getReviewsBySpotId(spotId));
+		await dispatch(spotsActions.getSpotDetails(spotId));
 	};
 
-	const submitRev = async (e) => {
+	const HandleSubmitReview = async (e) => {
 		e.preventDefault();
 		setHasSubmit(true);
 
-		setErrors({});
+		setErrors([]);
 
 		const reviewInfoData = { review, stars };
 
@@ -45,56 +45,57 @@ export default function SpotReviewForm() {
 		}
 	};
 	return (
-		<div className="login-wrapper">
-			<h4 className="login-title">How was your experience?</h4>
-			<form className="login-form form-r" onSubmit={submitRev}>
+		<div className="rev-form-wrapper-3">
+			<p className="login-close-1" onClick={() => setShowReviewModal(false)}>
+				x
+			</p>
+			<ul className="error-review-form">
+				{errors.map((error, idx) => <li key={idx}>{error}</li>)}
+			</ul>
+			<h4 className="login-title">Describe Your Experience</h4>
+			<form className="login-form form-r" onSubmit={HandleSubmitReview}>
+
 				<div className="text-rating">Rating</div>
 				<div>
 					{[...Array(5)].map((star, i) => {
-						const ratingValue = i + 1;
+						const valRating = i + 1;
 						return (
 							<label key={i}>
 								<input
-									className="star-input"
+									className="inp-star"
 									type="radio"
 									name="rating"
-									value={ratingValue}
-									onClick={() => setStars(ratingValue)}
+									value={valRating}
+									onClick={() => setStars(valRating)}
 								/>
 								<FaStar
 									className="stars"
 									class="fa-solid fa-star"
 									color={
-										ratingValue <= (hover || stars) ? '#ffc107' : '#e4e5e9'
+										valRating <= (hover || stars) ? '#ffc107' : '#e4e5e9'
 									}
 									size={25}
-									onMouseEnter={() => setHover(ratingValue)}
+									onMouseEnter={() => setHover(valRating)}
 									onMouseLeave={() => setHover(null)}
 								/>
 							</label>
 						);
 					})}
 				</div>
-				<div className=" error">
-					{hasSubmit && <span>{errors.stars ? errors.stars : null}</span>}
-				</div>
+
 				<div className="text-rev-wrapper">
-					<div className="text-rev-title">Write about your experience!</div>
-					<div className="text-rev-subTitle">
-						Let others know what it was like to stay at this spot.
-					</div>
+					<div className="text-rev-title">Leave a detailed review!</div>
+
 					<textarea
 						className="text-rev"
 						name="text-rev"
 						value={review}
 						onChange={(e) => setReview(e.target.value)}
-						placeholder="Please describe your stay..."
+						placeholder="Let others know what it was like to stay at this spot..."
 					/>
 				</div>
-				<div className=" error">
-					{hasSubmit && <span>{errors.review ? errors.review : null}</span>}
-				</div>
-				<button className="button-rev">Confirm</button>
+
+				<button className="button-rev">Submit!</button>
 			</form>
 		</div>
 	);

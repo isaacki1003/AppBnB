@@ -15,6 +15,7 @@
     border-radius: 15px;
     background-color: white;
 }
+
 .login-wrapper > h4 {
     margin-bottom: 30px;
 }
@@ -98,4 +99,9 @@
     position: absolute;
     font-size: 14px;
     bottom: 14px;
+}
+
+.input4 {
+    margin-top: 3em;
+    margin-bottom: auto;;
 }

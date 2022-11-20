@@ -45,37 +45,39 @@ function LoginFormModal() {
   return (
     <div className="login-wrapper">
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className='error'>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            placeholder="Username or Email"
-            onChange={(e) => setCredential(e.target.value)}
-            required
-            className="box-input-log"
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="box-input-log"
-          />
-        </label>
-        <button className="login-submit-button" type="submit">Log In</button>
-        <button onClick={demoUser} className="login-submit-button">
-            Demo-User
-        </button>
+        <div className='input4'>
+          <label>
+            Username or Email
+            <input
+              type="text"
+              value={credential}
+              placeholder="Username or Email"
+              onChange={(e) => setCredential(e.target.value)}
+              required
+              className="box-input-log"
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="box-input-log"
+            />
+          </label>
+          <button className="login-submit-button" type="submit">Log In</button>
+          <button onClick={demoUser} className="login-submit-button">
+              Demo-User
+          </button>
+          </div>
       </form>
       <p className="login-toggle">
           Don't have an account?{' '}
