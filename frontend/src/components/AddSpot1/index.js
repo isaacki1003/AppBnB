@@ -186,6 +186,7 @@ export default function AddSpot1() {
 						</form>
 					</>
 				)}
+
 				{imageForm && (
 					<>
 						<form id="create-form" onSubmit={onSubImg}>

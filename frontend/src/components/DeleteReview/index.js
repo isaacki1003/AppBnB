@@ -4,6 +4,7 @@ import * as reviewsActions from '../../store/review';
 import * as spotsActions from '../../store/spot';
 import "./DeleteReview.css"
 
+
 export default function DeleteReview({ reviewId, spotId }) {
 	const dispatch = useDispatch();
 

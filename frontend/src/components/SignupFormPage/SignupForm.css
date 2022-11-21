@@ -14,12 +14,12 @@
     border: 1px solid rgb(160, 155, 155);
     border-radius: 15px;
     background-color: white;
-};
+}
 
 .input3 {
     margin-top: 3.5em;
     margin-bottom: auto;;
-};
+}
 
 .input2 {
     width: 100%;
@@ -28,7 +28,7 @@
     margin-bottom: 10px;
     border: 1px solid gray;
     text-indent: 10px;
-};
+}
 
 .signup-submit {
     height: 40px;
@@ -41,4 +41,68 @@
     height: 30px;
     color: white;
     background-color: red;
-};
+}
+
+.error1 {
+    position: absolute;
+        top: 38px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error2 {
+    position: absolute;
+        top: 93px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error3 {
+    position: absolute;
+        top: 148px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error4 {
+    position: absolute;
+        top: 203px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error5 {
+    position: absolute;
+        top: 258px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error6 {
+    position: absolute;
+        top: 313px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error7 {
+    position: absolute;
+        top: 368px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
+
+.error8 {
+    position: absolute;
+        top: 423px;
+        font-size: 12px;
+        text-align: center;
+        color: red;
+}
