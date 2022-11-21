@@ -68,7 +68,7 @@ export default function SpotReviews({ spot }) {
 				</Modal>
 			)}
 			<div className="wrapper-revs">
-				{spotReviews?.map((review, i) => (
+				{spotReviews?((review, i) => (
 					<div className="wrapper-rev" key={i}>
 						<div className="row-rev1">
 							<div className="rever">

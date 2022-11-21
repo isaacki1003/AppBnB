@@ -1,6 +1,6 @@
 .spot-wrapper-revs {
     padding: 1.5rem 0;
-}
+};
 
 .rev-add-new {
     cursor: pointer;
@@ -9,53 +9,53 @@
     font-weight: 300;
     background-color: white;
     text-decoration: underline;
-}
+};
 
 .row-rev1 {
     align-items: center;
     display: flex;
-}
+};
 
 .wrapper-revs {
     display: flex;
     flex-wrap: wrap;
     margin-top: 1.4rem;
     width: 100%;
-}
+};
 
 .wrapper-rev {
     width: 50%;
     margin-bottom: 2rem;
-}
+};
 
 .rev-date {
     color: #717171db;
     font-size: smaller;
-}
+};
 
 .rever {
     display: flex;
-}
+};
 
 .row-rev2 {
     margin-top: 1rem;
     font-weight: 300;
-}
+};
 
 .date-name-rev {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 0.5rem;
-}
+};
 
 .rever-name {
     font-weight: bold;
     font-size: 20px;
-}
+};
 
 
 .rev-title {
     font-size: 1.5rem;
     font-weight: 700;
-}
+};

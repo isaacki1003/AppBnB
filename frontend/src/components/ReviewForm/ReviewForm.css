@@ -3,14 +3,13 @@
     border-color: red;
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 174, 233, 0.609);
-}
+};
 
 .text-rev-title {
     font-weight: 800;
     margin-bottom: 1.2em;
     margin-top: 1em;
-}
-
+};
 
 .button-rev {
     width: 80%;
@@ -22,22 +21,22 @@
     color: white;
     font-weight: 600;
     margin-bottom: 1em;
-}
+};
 
 .inp-star {
     cursor: pointer;
     display: none;
-}
+};
 
 .text-rating {
     margin-bottom: 0.55rem;
     font-weight: 600;
     margin-top: 0;
-}
+};
 
 .form-r {
     text-align: center;
-}
+};
 
 .text-rev {
     resize: none;
@@ -47,8 +46,7 @@
     height: 150px;
     padding: 12px;
     margin-bottom: 0.5em;
-}
-
+};
 
 .rev-form-wrapper-3 {
     display: flex;
@@ -66,17 +64,15 @@
     border: 1px solid rgb(160, 155, 155);
     border-radius: 15px;
     background-color: white;
-}
+};
 
 .rev-form-wrapper-3 > h4 {
     margin-bottom: 30px;
-}
-
-
+};
 
 .error-review-form {
     color: red;
     height: 1rem;
     font-size: 13px;
     padding-top: 4em;
-}
+};
