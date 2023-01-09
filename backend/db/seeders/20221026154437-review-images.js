@@ -23,7 +23,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    const Op = Sequelize.Op;
+    options.tableName = 'ReviewImages';
     return queryInterface.bulkDelete(options);
   }
 };
