@@ -19,7 +19,7 @@ module.exports = {
         reviewId: 2,
         url: 'www.test2.com'
       }
-    ])
+    ], {})
   },
 
   down: (queryInterface, Sequelize) => {
