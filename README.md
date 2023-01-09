@@ -3,6 +3,10 @@
 [AppBnB](https://appbnb1.herokuapp.com/) is a web application inspired by [Airbnb](https://www.airbnb.com/), that provides an online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities.
 AppBnB allow one to create, read, update and delete listings as well as create, read, and delete reviews.
 
+### Landing Page 👀
+
+![alt text](https://github.com/isaacki1003/AppBnB/blob/main/landing-page.png?raw=true)
+
 ## Tech Stack
 
 ### Frameworks, Platforms, and Libararies:
@@ -22,10 +26,6 @@ AppBnB allow one to create, read, update and delete listings as well as create, 
 ### Hosting:
 
 ![HEROKU](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=Heroku&logoColor=white)
-
-### Landing Page 👀
-
-![alt text](https://github.com/isaacki1003/AppBnB/blob/main/landing-page.png?raw=true)
 
 ## Installation
 
