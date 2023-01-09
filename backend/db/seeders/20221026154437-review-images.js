@@ -10,6 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    options.tableName = 'ReviewImages';
     return queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
