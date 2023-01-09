@@ -1,9 +1,17 @@
 'use strict';
 
+// NEW: add this code to each migration file
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+// END of new code
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('SpotImages', [
+  up: (queryInterface, Sequelize) => {
+    options.tableName = 'SpotImages';
+    return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
         url: 'https://a0.muscache.com/im/pictures/miso/Hosting-717134404264905813/original/dfe9fd1e-a010-43c9-b546-0bbc7d59f7f3.jpeg?im_w=1200',
@@ -147,10 +155,8 @@ module.exports = {
     ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-    const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('SpotImages', {
-      url: { [Op.in]: ['www.testimage.com', 'www.testimage2.com'] }
-    }, {})
+  down: (queryInterface, Sequelize) => {
+    options.tableName = 'SpotImages';
+    return queryInterface.bulkDelete(options);
   }
 };

@@ -18,6 +18,7 @@
 
 .spot-row {
     margin-bottom: 0.3rem;
+    text-decoration: none;
 }
 
 .spot-r1 {
@@ -27,11 +28,13 @@
     display: flex;
     font-size: 1em;
     color: black;
+    text-decoration: none;
 }
 
 .spot-r2 {
     color: #717171ee;
     font-size: 0.9em;
+    text-decoration: none;
 }
 
 .spot-row4 > span {
