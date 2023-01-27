@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import SingleSpot from "./components/SingleSpot";
 import AddSpot1 from "./components/AddSpot1";
 import UpdateSpot from "./components/UpdateSpot";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 		isLoaded && (
 			<div>
 				<Navigation isLoaded={isLoaded} />
+				<ScrollToTop />
 				<Switch>
 					<Route exact path="/">
 						<Home />
