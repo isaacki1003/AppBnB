@@ -6,6 +6,7 @@ import SpotInfo from './SpotInfo';
 import Images from './Images';
 import SpotTitle from './SpotTitle';
 import SpotReviews from '../ReviewsSpot';
+import SingleMap from './SingleMap';
 import "./SingleSpot.css";
 
 export default function SingleSpot() {
@@ -45,6 +46,7 @@ export default function SingleSpot() {
 			<div className="single-spot-wrapper">
 				<Images otherImgs={otherImgs} previewImage={previewImage} />
 				<SpotInfo name={name} spot={spot} />
+				<SingleMap spot={spot} />
 				<SpotReviews spot={spot} />
 			</div>
 		</div>

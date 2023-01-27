@@ -17,8 +17,6 @@ module.exports = {
         firstName: 'Barack',
         lastName: 'Obama',
         username: 'Demo-lition',
-        firstName: 'Isaac',
-        lastName: 'Ki',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
@@ -26,8 +24,6 @@ module.exports = {
         firstName: 'Donald',
         lastName: 'Trump',
         username: 'FakeUser1',
-        firstName: 'Hoon',
-        lastName: 'Kim',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
@@ -35,8 +31,6 @@ module.exports = {
         firstName: 'Joe',
         lastName: 'Biden',
         username: 'FakeUser2',
-        firstName: 'Leyland',
-        lastName: 'Chin',
         hashedPassword: bcrypt.hashSync('password3')
       }
     ], {});

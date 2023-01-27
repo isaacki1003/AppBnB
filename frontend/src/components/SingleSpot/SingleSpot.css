@@ -224,3 +224,39 @@
         max-width: 480px;
     }
 }
+
+.gm-style-moc {
+    height: unset !important;
+}
+
+/* Google Map single Spot */
+.map-single-wrapper{
+    padding: 2rem 0;
+    border-top: 1px solid rgba(118 118 118/0.2);
+}
+
+.map-single-title{
+    font-size: 22px;
+    font-weight: 500;
+    padding-bottom: 1rem;
+}
+
+
+.single-house-map{
+    font-weight: 500;
+    font-size: 1.3rem;
+    height: 50px;
+    width: 50px;
+    border-radius: 2px 50% 50% 50%;
+    transform: rotate(-135deg);
+    color: white;
+    background-color: #e31c5a;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marker-circle-content {
+    transform: rotate(135deg);
+}
