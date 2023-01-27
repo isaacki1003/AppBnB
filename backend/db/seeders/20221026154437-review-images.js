@@ -14,11 +14,11 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
-        url: 'www.test1.com'
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-15058446/original/56ff5e60-671b-4736-9d50-e3b59dc9d185.jpeg?im_w=1440'
       },
       {
         reviewId: 2,
-        url: 'www.test2.com'
+        url: 'https://a0.muscache.com/im/pictures/6861fc2a-ca6b-473a-b64d-7303f3836584.jpg?im_w=1440'
       }
     ], {})
   },

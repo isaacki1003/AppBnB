@@ -25,7 +25,7 @@ module.exports = {
         price: 450
       },
       {
-        ownerId: 1,
+        ownerId: 3,
         address: '234 Hobbit Lane',
         city: 'Cedar City',
         state: 'UT',
@@ -37,7 +37,7 @@ module.exports = {
         price: 123
       },
       {
-        ownerId: 2,
+        ownerId: 3,
         address: '345 Bear Blvd',
         city: 'Big Bear Lake',
         state: 'CA',
@@ -49,7 +49,7 @@ module.exports = {
         price: 150
       },
       {
-        ownerId: 1,
+        ownerId: 3,
         address: '3744 Tree Lane',
         city: 'Topanga Canyon',
         state: 'CA',
@@ -61,7 +61,7 @@ module.exports = {
         price: 352
       },
       {
-        ownerId: 2,
+        ownerId: 3,
         address: '111 Ocean Ave',
         city: 'Santa Monica',
         state: 'CA',
@@ -85,7 +85,7 @@ module.exports = {
         price: 135
       },
       {
-        ownerId: 1,
+        ownerId: 3,
         address: '132 Forest Rd',
         city: 'New York',
         state: 'NY',
@@ -107,7 +107,103 @@ module.exports = {
         name: 'Modern Luxury Retreat',
         description: 'Relax in a luxurious 3-story Malibu getaway with spectacular ocean & mountain views.',
         price: 632
-      }
+      },
+      {
+        ownerId: 2,
+        address: '27560 E Pacific Coast Hwy',
+        city: 'Malibu',
+        state: 'CA',
+        country: 'United States of America',
+        lat: 123,
+        lng: 123,
+        name: 'Romantic Beachfront Retreat',
+        description: 'Entire rental unit hosted by Gil',
+        price: 123
+      },
+      {
+        ownerId: 2,
+        address: '28032 Sea Ln Dr',
+        city: 'Malibu',
+        state: 'CA',
+        country: 'United States of America',
+        lat: 123,
+        lng: 123,
+        name: 'Breathtaking Views and Modern Design',
+        description: 'Entire home hosted by Daniel',
+        price: 123
+      },
+      {
+        ownerId: 2,
+        address: '5016 W Washington Blvd',
+        city: 'Los Angeles',
+        state: 'CA',
+        country: 'United States of America',
+        lat: 123,
+        lng: 123,
+        name: 'Modern Villa with Unmatched Skyline Views',
+        description: 'Entire home hosted by Marina',
+        price: 123
+      },
+      {
+        ownerId: 2,
+        address: '27834 E Pacific Coast Hwy',
+        city: 'Malibu',
+        state: 'CA',
+        country: 'United States of America',
+        lat: 123,
+        lng: 123,
+        name: 'Modern Malibu Paradise',
+        description: 'Entire home hosted by Jeffrey',
+        price: 123
+      },
+      {
+        ownerId: 2,
+        address: '63656 Doggie Trail',
+        city: 'Joshua Tree',
+        state: 'CA',
+        country: 'United States of America',
+        lat: 123,
+        lng: 123,
+        name: 'Invisible House',
+        description: 'Entire home hosted by Fieldtrip',
+        price: 123
+      },
+      {
+        ownerId: 2,
+        address: '11006 Massachusetts Ave',
+        city: 'Los Angeles',
+        state: 'CA',
+        country: 'United States of America',
+        lat: 123,
+        lng: 123,
+        name: 'Lakefront Shipping Container',
+        description: 'Entire cabin hosted by Robyn',
+        price: 123
+      },
+      {
+        ownerId: 2,
+        address: '734 Levering Ave',
+        city: 'Los Angeles',
+        state: 'CA',
+        country: 'United States of America',
+        lat: 123,
+        lng: 123,
+        name: 'Architecture Cave House',
+        description: 'Cycladic home hosted by Laskarina',
+        price: 123
+      },
+      {
+        ownerId: 2,
+        address: '714 Levering Ave',
+        city: 'Los Angeles',
+        state: 'CA',
+        country: 'United States of America',
+        lat: 123,
+        lng: 123,
+        name: 'Full Luxury Treehouse',
+        description: 'Entire villa hosted by Petra',
+        price: 123
+      },
     ]);
   },
 

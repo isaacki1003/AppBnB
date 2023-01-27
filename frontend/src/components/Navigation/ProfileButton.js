@@ -47,7 +47,7 @@ function ProfileButton({ user }) {
 				{showMenu && (
 					<ul className="drop-down">
 						<li className="logged-in test-nav">
-							<span>Welcome,  {' '}{' '}{' '} </span> {' '} {user.firstName}
+							<span>Welcome ‎ {' '}{' '}{' '} </span> {' '} {user.firstName}!
 						</li>
 						<li className="log-out" onClick={logout}>
 							Log Out

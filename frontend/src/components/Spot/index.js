@@ -12,7 +12,7 @@ export default function Spot({ spot }) {
 	};
 
 	return (
-		<NavLink to={`/spots/${spot.id}`}>
+		<NavLink style={{ textDecoration: 'none' }} to={`/spots/${spot.id}`}>
 			<div className="spot-wrapper">
 				<img
 				className="prev-image"
@@ -23,14 +23,18 @@ export default function Spot({ spot }) {
 							:  spot.previewImage
 					}
 				/>
-				<div className="spot-r1 spot-row">
+				<div className="spot-r1 spot-row not-wrap">
 					<span>
 						{spot.city}, {spot.state}{' '}
 					</span>
 					<span>
-						{spot.avgRating ? spot.avgRating : ''}{' '}
+						{spot.avgRating}{' '}
 						{spot.avgRating === "Not yet rated" || spot.avgRating === 0 ? (
-							" "
+							<img
+							src="https://www.pngrepo.com/png/6396/180/star.png"
+							alt="message logo"
+							style={{ height: '12px', width: '12px' }}
+						/>
 							) : (
 							<img
 								src="https://www.pngrepo.com/png/6977/180/star.png"
