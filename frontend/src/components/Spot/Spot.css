@@ -5,10 +5,48 @@
     flex: 1;
 }
 
+@media (max-width: 1900px) {
+    img.prev-image {
+        max-height: 188px;
+        max-width: 100%;
+        border-radius: 10px;
+        flex: 1;
+    }
+}
+
+@media (max-width: 1635px) {
+    img.prev-image {
+        max-height: 230px;
+        max-width: 100%;
+        border-radius: 10px;
+        flex: 1;
+    }
+}
+
+@media (max-width: 1150px) {
+    img.prev-image {
+        max-height: 210px;
+        max-width: 100%;
+        border-radius: 10px;
+        flex: 1;
+    }
+}
 
 @media (max-width: 950px) {
-    .prev-image {
+    img.prev-image {
+        max-height: 234px;
+        max-width: 100%;
+        border-radius: 10px;
+        flex: 1;
+    }
+}
+
+@media (max-width: 550px) {
+    img.prev-image {
         max-height: 277px;
+        max-width: 100%;
+        border-radius: 10px;
+        flex: 1;
     }
 }
 

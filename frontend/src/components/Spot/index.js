@@ -12,7 +12,7 @@ export default function Spot({ spot }) {
 	};
 
 	return (
-		<NavLink to={`/spots/${spot.id}`}>
+		<NavLink style={{ textDecoration: 'none' }} to={`/spots/${spot.id}`}>
 			<div className="spot-wrapper">
 				<img
 				className="prev-image"
