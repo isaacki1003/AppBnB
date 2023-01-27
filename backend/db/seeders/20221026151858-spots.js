@@ -7,7 +7,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 // END of new code
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: (queryInterface, Sequelize) => {
     options.tableName = 'Spots'
@@ -209,6 +208,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     options.tableName = 'Spots'
-    return queryInterface.bulkDelete(options);
+    return queryInterface.dropTable(options, options);
   }
 };
