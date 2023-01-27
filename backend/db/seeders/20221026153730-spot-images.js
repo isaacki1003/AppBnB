@@ -7,7 +7,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 // END of new code
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: (queryInterface, Sequelize) => {
     options.tableName = 'SpotImages';

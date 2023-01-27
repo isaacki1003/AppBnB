@@ -38,6 +38,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     options.tableName = 'Users';
-    return queryInterface.bulkDelete(options);
+    return queryInterface.dropTable(options, options);
   }
 };
