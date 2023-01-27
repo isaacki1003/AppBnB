@@ -223,7 +223,7 @@ router.get('/', async (req, res) => {
         });
 
         if (!reviewSum) {
-        current.avgRating = 'Not yet rated'
+        current.avgRating = 0;
         } else {
         current.avgRating = (reviewSum / reviewCount).toFixed(1)
         };

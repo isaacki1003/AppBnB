@@ -43,7 +43,7 @@ const SingleMap = ({ spot }) => {
 	const containerStyle = {
 		width: '100%',
 		height: '500px',
-		zIndex: '-1'
+		zIndex: '1'
 	};
 
 	const [map, setMap] = useState(null);
@@ -68,6 +68,7 @@ const SingleMap = ({ spot }) => {
 						mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
 					>
 						<div className="single-house-map">
+							<div className="marker-circle"></div>
 							<div className="marker-circle-content">
 								<i class="fa-solid fa-house-chimney"></i>
 							</div>

@@ -1,9 +1,17 @@
 .prev-image {
-    border-radius: 7px;
     max-width: 100%;
-    min-height: 100%;
+    max-height: 100%;
+    border-radius: 10px;
     flex: 1;
 }
+
+
+@media (max-width: 950px) {
+    .prev-image {
+        max-height: 277px;
+    }
+}
+
 
 .spot-wrapper {
     width: 100%;
@@ -46,4 +54,10 @@
     font-size: 0.9em;
     color: black;
     font-weight: 400;
+}
+
+.not-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
