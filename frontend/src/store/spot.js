@@ -82,13 +82,20 @@ export const AddSpot = (spot) => async dispatch => {
 };
 
 export const AddImage = (imageInfo, spotId) => async (dispatch) => {
+	const { url, preview } = imageInfo;
+	const formData = new FormData();
+	formData.append('image', url);
+	formData.append('preview', preview);
 	const res = await csrfFetch(`/api/spots/${spotId}/images`, {
 		method: 'POST',
-		body: JSON.stringify(imageInfo)
+		headers: {
+			'Content-Type': 'multipart/form-data'
+		},
+		body: formData
 	});
 
 	if (res.ok) {
-		const data = res.json();
+		const data = await res.json();
 		return data;
 	}
 };

@@ -36,6 +36,16 @@
     max-height: 98vh;
 }
 
+.uploaded-images-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-bottom: 10px;
+}
+
 .add-spot-form-input {
     height: 35px;
     border: 1px solid lightgray;
@@ -83,4 +93,60 @@
     padding: 0;
     height: 1.4rem;
     font-size: 13px;
+}
+
+.image-form-input{
+    margin-bottom: 1rem;
+}
+
+.choose-file-image-button{
+    display: none;
+}
+
+.choose-file-main-button{
+    cursor: pointer;
+    border: 1px solid black;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.choose-file-main-button-wrapper{
+    text-align: center;
+}
+.choose-file-main-button:hover {
+    background-color: red;
+    border: 1px solid white;
+    color: white;
+}
+
+.uploaded-images-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-bottom: 10px;
+}
+
+.spot-uploaded-images{
+    height: 200px;
+    width: 40%;
+    min-width: 235px;
+    border-radius: 20px;
+}
+
+.image-disclaimer{
+    text-align: center;
+    margin-top: 0.5em;
+    padding: 4px 0;
+    font-size: smaller;
+}
+
+.upload-image-error {
+    font-size: small;
+    margin-bottom: 1em;
+    text-align: center;
+    color: red;
 }
