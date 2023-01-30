@@ -12,8 +12,6 @@ export default function Preview() {
                     <span>I</span>
                     <span>N</span>
                     <span>G</span>
-
-
                 </div>
             </div>
         </div>
