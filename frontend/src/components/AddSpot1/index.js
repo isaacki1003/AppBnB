@@ -4,6 +4,7 @@ import { getSpotDetails } from '../../store/spot';
 import { useDispatch } from "react-redux";
 import * as spotsActions from '../../store/spot';
 import './AddSpot.css';
+import Preview from '../Preview';
 
 export default function AddSpot1() {
 	const dispatch = useDispatch();
@@ -23,10 +24,16 @@ export default function AddSpot1() {
 	const [price, setPrice] = useState('');
 	const [errors, setErrors] = useState([]);
 	const [spotId, setSpotId] = useState('');
-	const [submitted, setSubmitted] = useState(false);
+	const [hasSubmit, setHasSubmit] = useState(false);
 
 	const [spotForm, setSpotForm] = useState(true);
 	const [imageForm, setImageForm] = useState(false);
+
+	const [hasSubmitImg, setHasSubmitImg] = useState(false);
+	const [imageErrors, setImageErrors] = useState(false);
+	const [UploadedImages, setUploadedImages] = useState([]);
+	const [showPreview, setShowPreview] = useState(false);
+
 
 	const imageFill = (idx) => (e) => {
 		let newArray = [...otherImgs];
@@ -38,7 +45,7 @@ export default function AddSpot1() {
 	let newSpot;
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		setSubmitted(true);
+		setHasSubmit(true);
 		setErrors([]);
 		const spotInfo = {
 			address,
@@ -68,44 +75,48 @@ export default function AddSpot1() {
 		}
 	};
 
+	const handleAddPhotos = (e) => {
+		setImageErrors(false);
+		setShowPreview(true);
+		setHasSubmitImg(false);
+		const postImage = async (imagess) => {
+			console.log(imagess);
+			let imageArr = [];
+			let allImages = Object.values(imagess);
+			for (let i = 0; i < allImages.length; i++) {
+				let image = allImages[i];
+				let preview = i == 0 ? true : false;
+				const imageData = { url: image, preview };
+				const newImage = await dispatch(
+					spotsActions.AddImage(imageData, spotId)
+				).catch(async (res) => {
+					const data = await res.json();
+					if (data && data.errors) {
+						setImageErrors(data.errors);
+					}
+				});
+				imageArr.push(newImage.url);
+			}
+			setUploadedImages(imageArr);
+			setShowPreview(false);
+			setHasSubmitImg(true);
+		};
+		const updateFiles = (e) => {
+			const files = e.target.files;
+			postImage(files);
+		};
+
+		updateFiles(e);
+	};
+
 	const onSubImg = async (e) => {
 		e.preventDefault();
-		setSubmittedImg(true);
-		setImgErrors({});
 
-		const prevImgInfo = { url: previewImage, preview: true };
-		let succesful = await dispatch(
-			spotsActions.AddImage(prevImgInfo, spotId)
-		).catch(async (res) => {
-			const data = await res.json();
-			if (data && data.errors) {
-				setImgErrors(data.errors);
-			}
-		});
-
-		let redir = false;
-		if (succesful) {
-			otherImgs.forEach(async (image) => {
-				if (image) {
-					const imgInfo = { url: image, preview: false };
-					await dispatch(spotsActions.AddImage(imgInfo, spotId)).catch(
-						async (res) => {
-							const data = await res.json();
-							if (data && data.errors) {
-								setImgErrors(data.errors);
-							}
-						}
-					);
-				}
-			});
-			redir = true;
-		}
-
-		if (redir) {
-			dispatch(getSpotDetails(spotId));
-			history.push(`/spots/${spotId}`);
-		}
+		dispatch(getSpotDetails(spotId));
+		history.push(`/spots/${spotId}`);
 	};
+
+
 
 
 	return (
@@ -178,7 +189,7 @@ export default function AddSpot1() {
 								onChange={(e) => setPrice(e.target.value)}
 								placeholder="Price per night"
 								min="1"
-								max="5"
+								max="10000"
 							/>
 							<button className="submit-button">
 								Now, let's add a couple photos!
@@ -190,29 +201,49 @@ export default function AddSpot1() {
 				{imageForm && (
 					<>
 						<form id="create-form" onSubmit={onSubImg}>
-							<ul className="update-error">
-								{errors.map((error, idx) => <li key={idx}>{error}</li>)}
-							</ul>
-							<input
-								className="add-spot-form-input"
-								type="text"
-								value={previewImage}
-								onChange={(e) => setPreviewImage(e.target.value)}
-								placeholder="Preview Image"
-							/>
-							{otherImgs.map((item, i) => {
-								return (
+							<div className="uploaded-images-wrapper">
+								{!showPreview &&
+									UploadedImages.map((image) => (
+										<img
+											src={image}
+											className="spot-uploaded-images"
+											onError={({ currentTarget }) => {
+												currentTarget.onerror = null;
+												currentTarget.src =
+													'https://nhutbnb.s3.us-west-1.amazonaws.com/error_image.png';
+												setImageErrors(true);
+											}}
+										/>
+									))}
+								{showPreview && <Preview />}
+							</div>
+							{imageErrors && (
+								<div className="upload-image-error">
+									There was an issue with one or more of your images. Please try again.
+								</div>
+							)}
+							<div className="choose-file-main-button-wrapper center">
+								<label className="choose-file-main-button">
+									Select Images
 									<input
-										type="url"
-										key={i}
-										value={item}
-										className="add-spot-form-input"
-										onChange={imageFill(i)}
-										placeholder="Extra Images (not required)"
+										type="file"
+										multiple
+										onChange={handleAddPhotos}
+										className="choose-file-image-button"
 									/>
-								);
-							})}
-							<button className="submit-button">Host</button>
+								</label>
+							</div>
+							<div className="image-disclaimer">
+								* You must reupload all images if you want to change them.
+							</div>
+							{hasSubmitImg && (
+								<button className="submit-button">Host</button>
+							)}
+							{!hasSubmitImg && (
+								<button className="form-submit-button">
+									View listing without Photos
+								</button>
+							)}
 						</form>
 					</>
 				)}

@@ -90,9 +90,16 @@ const validateSpot = [
 	handleValidationErrors
 ];
 
+const validateBooking = [
+	check('startDate').isDate().withMessage('Must be date with format: YYYY-MM-DD'),
+	check('endDate').isDate().withMessage('Must be date with format: YYYY-MM-DD'),
+	handleValidationErrors
+];
+
 module.exports = {
   handleValidationErrors,
   validateSpot,
   validateSignup,
-  validateReview
+  validateReview,
+  validateBooking
 };
