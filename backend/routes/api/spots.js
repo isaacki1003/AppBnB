@@ -317,9 +317,9 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) =>
 
 //Create a Booking from a Spot based on the Spot's id
 router.post('/:spotId/bookings', requireAuth, validateBooking, async (req, res) =>{
-    const spot = await Spot.findByPk(req.params.spotId);
+    const findSpot = await Spot.findByPk(req.params.spotId);
 
-    if (!spot) {
+    if (!findSpot) {
         return res
           .status(404)
           .json({

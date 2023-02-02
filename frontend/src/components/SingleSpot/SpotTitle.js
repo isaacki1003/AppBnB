@@ -44,7 +44,7 @@ export default function SpotTitle({ spot }) {
 				-
 				<span className="spot-details-tile-reviews">
 					{' '}
-						{spot.numReviews} Reviews
+						{spot.numReviews} Review(s)
 				</span>{' '}
 				-{' '}
 				<span className="single-spot-tile-location">
