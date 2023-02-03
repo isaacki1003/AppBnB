@@ -297,7 +297,7 @@ export default function SpotInfo({ spot, name }) {
 					/>
 							)}{' '}
 							{spot.avgStarRating ? spot.avgStarRating : 0} •{' '}
-							<a href="#reviews" style={{ color: 'gray' }}>
+							<a href="#all-spot-reviews101" style={{ color: 'gray' }}>
 								{spot.numReviews} reviews
 							</a>
 						</div>

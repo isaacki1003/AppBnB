@@ -8,6 +8,7 @@ import SingleSpot from "./components/SingleSpot";
 import AddSpot1 from "./components/AddSpot1";
 import UpdateSpot from "./components/UpdateSpot";
 import ScrollToTop from "./components/ScrollToTop";
+import User from "./components/User";
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
 				<Switch>
 					<Route exact path="/">
 						<Home />
+					</Route>
+					<Route exact path="/user">
+						<User />
 					</Route>
 					<Route exact path="/spots/:spotId">
 						<SingleSpot />

@@ -48,12 +48,12 @@ function Navigation({ isLoaded }){
 					<img
 						src="https://www.pngrepo.com/png/358458/180/bars.png"
 						alt="self logo123"
-						style={{ height: '20px', width: '20px' , padding: '.03em'}}
+						style={{ height: '20px', width: '20px', marginLeft: '7px'}}
 					/>
 					<img
 						src="https://www.pngrepo.com/png/24707/180/avatar.png"
 						alt="self logo213"
-						style={{ height: '20px', width: '20px' , padding: '.03em'}}
+						style={{ height: '20px', width: '20px', marginRight: '8px'}}
 					/>
 					{showMenu && (
 						<ul className="drop-down">

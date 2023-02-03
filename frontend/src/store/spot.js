@@ -4,6 +4,8 @@ const LOAD_ALL_SPOTS = '/spots/LOAD_SPOTS';
 const LOAD_SPOT = '/spots/LOAD_SPOT';
 const CREATE_SPOT = 'spots/createSpot';
 const CLEAN_SPOT = 'spots/CLEAN_SPOT';
+const LOAD_USER_SPOTS = 'user/LOAD_USER_SPOTS';
+
 
 const normalize = (temp) => {
 	const newObj = {};
@@ -11,6 +13,13 @@ const normalize = (temp) => {
 	temp.forEach((item) => (newObj[item.id] = item));
 
 	return newObj;
+};
+
+const userSpots = spots => {
+	return {
+		type: LOAD_USER_SPOTS,
+		spots
+	};
 };
 
 const loadAllSpots = (allSpots) => {
@@ -110,9 +119,20 @@ export const getAllSpots = () => async (dispatch) => {
 	}
 };
 
+export const getUserSpots = () => async (dispatch) => {
+	const res = await fetch('/api/spots/current');
+
+	if (res.ok) {
+		const spots = await res.json();
+		const newSpots = normalize(spots.Spots);
+		dispatch(userSpots(newSpots));
+	}
+};
+
 const initialState = {
 	AllSpots: {},
-	SingleSpot: {}
+	SingleSpot: {},
+	userSpots: {}
 };
 
 export const spotsReducer = (state = initialState, action) => {
@@ -123,6 +143,9 @@ export const spotsReducer = (state = initialState, action) => {
 			return newState;
 		case LOAD_SPOT:
 			newState.SingleSpot = action.spot;
+			return newState;
+		case LOAD_USER_SPOTS:
+			newState.userSpots = action.spots;
 			return newState;
 		case CLEAN_SPOT:
 			newState.SingleSpot = {};

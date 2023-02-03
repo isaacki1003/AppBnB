@@ -86,45 +86,42 @@ router.get('/:spotId/reviews', async (req, res) => {
 
 //Get all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res) => {
-    const spots = await Spot.findAll({
-        where: {
-          ownerId: req.user.id
-        }
-    });
+  const ownerId = req.user.id;
 
-    const spotsArray = [];
+	// query all spot owned by current user
+	let findSpots = await Spot.findAll({ where: { ownerId } });
 
-    for (let i = 0; i < spots.length; i++) {
-        let currentSpot = spots[i].toJSON();
+	let Spots = [];
+	// formulating response
+	for (let i = 0; i < findSpots.length; i++) {
+		let spot = findSpots[i].toJSON();
+		// GET AVG Rating for each Spot
+		let rating = await Review.findAll({
+			where: {
+				spotId: Number(spot.id)
+			},
+			attributes: [
+				[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgRating']
+			],
+			raw: true
+		});
+		// format avgRating to 1 decimal places
+		const check = Number(rating[0].avgRating).toFixed(1);
+		spot.avgRating = parseFloat(check);
 
-        const starTotal = await Review.sum('stars', { where: { spotId: currentSpot.id } });
-        const reviewTotal = await Review.count({ where: { spotId: currentSpot.id } });
+		//GET PREVIEW IMAGE
+		let previewImage = await SpotImage.findOne({
+			where: {
+				[Op.and]: [{ spotId: spot.id }, { preview: true }]
+			}
+		});
+		spot.previewImage = previewImage
+			? previewImage.url
+			: 'No preview for this spot!';
+		Spots.push(spot);
+	}
 
-        if (!starTotal) {
-          currentSpot.avgRating = 0;
-        } else {
-          currentSpot.avgRating = (starTotal / reviewTotal).toFixed(1);
-        }
-
-        const image = await SpotImage.findOne({
-          where: {
-            [Op.and]: [
-              { spotId: currentSpot.id },
-              { preview: true }
-            ]
-          }
-        });
-
-        if (!image) {
-          currentSpot.previewImage = 'No images!'
-        } else {
-          currentSpot.previewImage = image.url
-        }
-
-        spotsArray.push(currentSpot);
-      }
-
-      return res.json({ Spots: spotsArray });
+	return res.json({ Spots });
 });
 
 //Get details of a Spot from an id
