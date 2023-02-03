@@ -9,6 +9,7 @@ import AddSpot1 from "./components/AddSpot1";
 import UpdateSpot from "./components/UpdateSpot";
 import ScrollToTop from "./components/ScrollToTop";
 import User from "./components/User";
+import PortfolioButton from "./components/PortfolioButton";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 			<div>
 				<Navigation isLoaded={isLoaded} />
 				<ScrollToTop />
+				<PortfolioButton />
 				<Switch>
 					<Route exact path="/">
 						<Home />
