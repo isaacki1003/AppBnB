@@ -6,11 +6,13 @@ import * as bookingActions from '../../store/booking';
 import './User.css';
 import UserSpotCard from './UserSpotCard';
 import UserReviewCard from './UserReviewCard';
+import UserBookingCard from './UserBookingCard';
+import UserPastCard from './UserPastCard';
 
 export default function User() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    // const userSpots = useSelector((state) => Object.values(state.spots.user));
+    const userSpots = useSelector((state) => state.spots.userSpots);
 	const userReviews = useSelector((state) => Object.values(state.reviews.user));
     const userBookings = useSelector((state) => state.bookings.userBookings);
 
@@ -18,15 +20,25 @@ export default function User() {
     const [showReviews, setShowReviews] = useState(false);
 	const [showBookings, setShowBookings] = useState(false);
 
+	const [allSpots, setAllSpots] = useState([]);
     const [futureReservations, setFutureReservations] = useState([]);
 	const [passReservations, setPassReservations] = useState([]);
+
+	useEffect(() => {
+		const getData = async () => {
+			const allUserSpots = await dispatch(spotActions.getUserSpots());
+			console.log('allUserSpots', allUserSpots);
+			setAllSpots(allUserSpots);
+		};
+		getData();
+	}, []);
 
     useEffect(() => {
         const todayDate = new Date().toJSON().slice(0, 10);
 		const getData = async () => {
 			await dispatch(reviewActions.getCurrentUserReviews());
 			await dispatch(spotActions.getAllSpots());
-            await dispatch(spotActions.getUserSpots());
+			await dispatch(bookingActions.getUserBookings());
 			const allBookings = await dispatch(bookingActions.getUserBookings());
 			let futureBooking = [];
 			let passBookings = [];
@@ -123,16 +135,16 @@ export default function User() {
 							<div className='center'>Bookings</div>
 							<div id="upcoming-reservation">Upcoming reservations</div>
 						</div>
-						{/* {futureReservation?.map((booking, i) => (
-							<AccountBookingCard booking={booking} key={i} />
-						))} */}
+						{futureReservations?.map((booking, i) => (
+							<UserBookingCard booking={booking} key={i} />
+						))}
 						<div className="account-booking-title">
 							<div id="upcoming-reservation">Places you've stayed</div>
 						</div>
 						<div className="account-display-pass-bookings">
-							{/* {passReservation?.map((booking, i) => (
-								<AccountPassBookingcard booking={booking} key={i} />
-							))} */}
+							{passReservations?.map((booking, i) => (
+								<UserPastCard booking={booking} key={i} />
+							))}
 						</div>
 					</>
 				)}

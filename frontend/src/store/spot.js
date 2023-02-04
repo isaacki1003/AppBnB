@@ -43,6 +43,11 @@ const createSpot = (spot) => {
 	}
 };
 
+const loadUserSpots = (spots) => ({
+	type: LOAD_USER_SPOTS,
+	spots
+});
+
 
 export const DeleteSpot = (spotId) => async () => {
 	return await csrfFetch(`/api/spots/${spotId}`, {
@@ -124,8 +129,9 @@ export const getUserSpots = () => async (dispatch) => {
 
 	if (res.ok) {
 		const spots = await res.json();
-		const newSpots = normalize(spots.Spots);
-		dispatch(userSpots(newSpots));
+		console.log(spots)
+		dispatch(loadUserSpots(userSpots.Spots));
+		return spots.Spots;
 	}
 };
 

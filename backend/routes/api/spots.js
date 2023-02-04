@@ -90,6 +90,8 @@ router.get('/current', requireAuth, async (req, res) => {
 
 	// query all spot owned by current user
 	let findSpots = await Spot.findAll({ where: { ownerId } });
+  console.log(findSpots);
+
 
 	let Spots = [];
 	// formulating response

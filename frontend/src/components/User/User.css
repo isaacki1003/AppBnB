@@ -77,10 +77,10 @@ cursor: pointer;
 }
 .account-display-bookings{
     width: 70vw;
-    min-width: 820px;
-    max-width: 1008px;
+    min-width: 870px;
+    max-width: 1080px;
     height: 300px;
-    min-height: fit-content;
+    min-height: 330px;
     border-radius: 20px;
     border: 1px solid rgb(208, 208, 208);
     display: flex;
@@ -233,6 +233,7 @@ cursor: pointer;
     min-width: fit-content;
     min-width:50%;
     padding: 1.3rem;
+    min-height: 155%;
 }
 
 .account-booking-edit-button{
@@ -242,6 +243,8 @@ cursor: pointer;
     background-color: rgb(215, 215, 215);
     border-radius: 10px;
     margin-top: 10px;
+    width:110%;
+    height: 33%;
 }
 .account-booking-edit-button:hover {
     background-color: rgb(170, 169, 169);
@@ -250,11 +253,13 @@ cursor: pointer;
 
 .account-booking-cancel-button{
     border: 1px solid rgb(208, 208, 208);
-    width: fit-content;
+    width: 33%;
     padding: 8px;
     font-size: 13px;
     border-radius: 20px;
     cursor: pointer;
+    margin-left: 1em;
+    text-align: center;
 }
 .account-booking-cancel-button:hover {
     color: red;
@@ -358,4 +363,10 @@ cursor: pointer;
 .account-pass-booking-card-image > img{
     height: 100%;
     width: 100%;
+}
+
+.center1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
