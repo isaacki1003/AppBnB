@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { ModalProvider } from "./context/Modal";
 import { ModalVariableProvider } from "./context/ModalVariable";
-
+import { DisplaySearchBarProvider } from "./context/DisplaySearchBar";
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
@@ -30,13 +30,15 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
   return (
     <Provider store={store}>
-      <ModalVariableProvider>
-        <ModalProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </ModalProvider>
-      </ModalVariableProvider>
+      <DisplaySearchBarProvider>
+        <ModalVariableProvider>
+          <ModalProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </ModalProvider>
+        </ModalVariableProvider>
+      </DisplaySearchBarProvider>
     </Provider>
   );
 }

@@ -4,6 +4,7 @@ const LOAD_ALL_SPOTS = '/spots/LOAD_SPOTS';
 const LOAD_SPOT = '/spots/LOAD_SPOT';
 const CREATE_SPOT = 'spots/createSpot';
 const CLEAN_SPOT = 'spots/CLEAN_SPOT';
+const CLEAR_UP_ALL_SPOTS = 'spots/CLEAR_UP_ALL_SPOTS';
 const LOAD_USER_SPOTS = 'user/LOAD_USER_SPOTS';
 
 
@@ -48,6 +49,11 @@ const loadUserSpots = (spots) => ({
 	spots
 });
 
+export const cleanUpAllSpots = () => {
+	return {
+		type: CLEAR_UP_ALL_SPOTS
+	};
+};
 
 export const DeleteSpot = (spotId) => async () => {
 	return await csrfFetch(`/api/spots/${spotId}`, {
@@ -155,6 +161,9 @@ export const spotsReducer = (state = initialState, action) => {
 			return newState;
 		case CLEAN_SPOT:
 			newState.SingleSpot = {};
+			return newState;
+		case CLEAR_UP_ALL_SPOTS:
+			newState.AllSpots = {};
 			return newState;
         default: {
             return state;

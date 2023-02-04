@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import './SearchBar.css';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle';
 import { Modal } from '../../context/Modal';
-import useSearchBarActive from '../../context/SearchBarActive';
+import useDisplaySearchBar from '../../context/DisplaySearchBar';
 import { usaCities } from 'typed-usa-states';
-import states from '../../utilz/state';
+import states from '../../utils/states';
 
 function SearchBar({
 	setShowSearchBar,
@@ -18,13 +18,21 @@ function SearchBar({
 	const searchInputRef = useRef(null);
 	const [showDestinations, setShowDestinations] = useState(false);
 	const { searchBarModalActive, setSearchBarModalActive } =
-		useSearchBarActive();
+		useDisplaySearchBar();
 	const [searchLocationResult, setSearchLocationResult] = useState([]);
+	const searchBoxRef = useRef(null);
 
 	const openMenu = () => {
 		if (showDestinations) return;
 		setShowDestinations(true);
 	};
+
+	const onClickOutside = (event) => {
+		if (searchBoxRef.current && !searchBoxRef.current.contains(event.target)) {
+		  setSearchBarModalActive(false);
+		  setShowSearchBar(false);
+		}
+	  };
 
 	useEffect(() => {
 		if (!showDestinations) return;
@@ -93,13 +101,17 @@ function SearchBar({
 
 	useEffect(() => {
 		const onScroll = () => {
-			setSearchBarModalActive(false);
-			setShowSearchBar(false);
+		setSearchBarModalActive(false);
+		setShowSearchBar(false);
 		};
 
-		window.removeEventListener('scroll', onScroll);
 		window.addEventListener('scroll', onScroll, { passive: true });
-		return () => window.removeEventListener('scroll', onScroll);
+		window.addEventListener('click', onClickOutside);
+
+		return () => {
+		window.removeEventListener('scroll', onScroll);
+		window.removeEventListener('click', onClickOutside);
+		};
 	}, []);
 
 	const handleSearchSubmit = (e) => {
@@ -122,7 +134,7 @@ function SearchBar({
 	};
 
 	return (
-		<>
+		<div ref={searchBoxRef}>
 			<div className="searchBar-outer">
 				<form onSubmit={handleSearchSubmit} className="searchBar-form">
 					<div
@@ -225,7 +237,7 @@ function SearchBar({
 					</div>
 				</Modal>
 			)}
-		</>
+		</div>
 	);
 }
 

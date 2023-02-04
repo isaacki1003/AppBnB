@@ -8,11 +8,16 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormPage from '../SignupFormPage';
 import './Navigation.css';
 import logo from "../../assets/logo.png"
+import SearchBar from '../SearchBar';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector((state) => state.session.user);
 	const { spotId } = useParams();
 	const [showMenu, setShowMenu] = useState(false);
+	const [showSearchBar, setShowSearchBar] = useState(false);
+	const [checkInOutDate, setCheckInOutDate] = useState('');
+	const [destination, setDestination] = useState('');
+
 	const {
 		showSignupModal,
 		setShowSignupModal,
@@ -88,7 +93,9 @@ function Navigation({ isLoaded }){
 
 
 	return (
-		<div className={`nav-wrapper`}>
+		<div className={`nav-wrapper ${
+			showSearchBar ? 'search-modal-active' : ''
+		}`}>
 			<div className={`details ${spotId ? 'width' : ''}`}>
 				<NavLink exact to="/">
 					<img
@@ -104,8 +111,30 @@ function Navigation({ isLoaded }){
 						}}
 					/>
 				</NavLink>
+				{!showSearchBar && (
+						<div
+							className="nav-bar-component center start-search-button-wrapper"
+							onClick={() => setShowSearchBar(true)}
+						>
+							<div className="start-search-button">
+								<div className="start-your-search">Start your search</div>
+								<div className="magnifying-glass">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</div>
+							</div>
+						</div>
+					)}
 				{isLoaded && sessionLinks}
 			</div>
+			{showSearchBar && (
+					<SearchBar
+						setShowSearchBar={setShowSearchBar}
+						checkInOutDate={checkInOutDate}
+						setCheckInOutDate={setCheckInOutDate}
+						destination={destination}
+						setDestination={setDestination}
+					/>
+				)}
 		</div>
 	);
 }
