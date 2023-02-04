@@ -12,6 +12,7 @@ import UserPastCard from './UserPastCard';
 export default function User() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
+	console.log('sessionUser', sessionUser)
     const userSpots = useSelector((state) => state.spots.userSpots);
 	const userReviews = useSelector((state) => Object.values(state.reviews.user));
     const userBookings = useSelector((state) => state.bookings.userBookings);
@@ -38,7 +39,6 @@ export default function User() {
 		const getData = async () => {
 			await dispatch(reviewActions.getCurrentUserReviews());
 			await dispatch(spotActions.getAllSpots());
-			await dispatch(bookingActions.getUserBookings());
 			const allBookings = await dispatch(bookingActions.getUserBookings());
 			let futureBooking = [];
 			let passBookings = [];
@@ -53,7 +53,7 @@ export default function User() {
 		};
 
 		if (sessionUser && !Object.values(userBookings).length) getData();
-	}, [sessionUser, userBookings]);
+	}, [sessionUser, userBookings.length, ]);
 
     const handleShowSpots = () => {
         setShowSpots(true);
@@ -107,17 +107,17 @@ export default function User() {
             <div className="account-display-wrapper">
                 {sessionUser && showSpots && (
 					<>
-						<div className="account-booking-title">
+						<div className="account-booking-title" id='spots101'>
 							<div className='center'>Spots</div>
                         </div>
-						{/* {userSpots?.map((spot, i) => (
+						{allSpots?.map((spot, i) => (
 							<UserSpotCard spot={spot} key={i} />
-						))} */}
+						))}
 					</>
 				)}
 				{sessionUser && showReviews && (
 					<>
-                        <div className="account-booking-title">
+                        <div className="account-booking-title" id='reviews101'>
 							<div className='center'>Reviews</div>
 						    <div id="upcoming-reservation" className='center'>
 							    You can edit your reviews directly on the card! Simply click
@@ -131,7 +131,7 @@ export default function User() {
 				)}
 				{sessionUser && showBookings && (
 					<>
-						<div className="account-booking-title">
+						<div className="account-booking-title" id='bookings101'>
 							<div className='center'>Bookings</div>
 							<div id="upcoming-reservation">Upcoming reservations</div>
 						</div>
@@ -139,7 +139,7 @@ export default function User() {
 							<UserBookingCard booking={booking} key={i} />
 						))}
 						<div className="account-booking-title">
-							<div id="upcoming-reservation">Places you've stayed</div>
+							<div id="upcoming-reservation">Recent Trips</div>
 						</div>
 						<div className="account-display-pass-bookings">
 							{passReservations?.map((booking, i) => (

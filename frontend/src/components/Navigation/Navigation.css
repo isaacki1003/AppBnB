@@ -98,7 +98,7 @@
     position: fixed;
     transform: translateX(-70%);
     background-color: white;
-    height: 150px;
+    height: 160px;
     width: 170px;
     list-style-type: none;
     font-size: 1rem;
@@ -134,6 +134,6 @@
     /* align-items: center; */
     height: 10px;
     padding-left: 7px;
-    margin-top: 1em;
+    margin-top: 1.3em;
     width: 70%;
 }

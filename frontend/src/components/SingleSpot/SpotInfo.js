@@ -429,8 +429,8 @@ export default function SpotInfo({ spot, name }) {
 									<div className="total">{grandTotal}</div>
 								</div>
 								<div>
-									You can manage all your trips in the{' '}
-									<NavLink to="/account">account</NavLink> page.
+									You can manage all your trips in your{' '}
+									<NavLink to="/user">user</NavLink> page.
 								</div>
 								<div
 									className="confirmed-trip-modal-done-button"

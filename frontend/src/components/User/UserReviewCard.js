@@ -45,7 +45,7 @@ const AccountReviewCard = ({ review }) => {
 						<div id="review-rating">
 							<div id="review-date">
 								<span className="account-review-title">
-									{updated ? 'Updated' : 'Made'} on:
+									{updated ? 'Updated' : 'Created'} on:
 								</span>{' '}
 								{new Date(review.updatedAt).toDateString()}
 							</div>
@@ -115,7 +115,7 @@ const AccountReviewCard = ({ review }) => {
 								}
 							}}
 						>
-							Delete review
+							Delete
 						</button>
 					</div>
 				</div>

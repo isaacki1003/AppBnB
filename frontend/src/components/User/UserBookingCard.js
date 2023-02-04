@@ -187,8 +187,8 @@ const UserBookingCard = ({ booking }) => {
 		e.preventDefault();
 		if (window.confirm('Do you wish to cancel this trip?')) {
 			await dispatch(bookingActions.deleteBooking(booking.id));
-			await dispatch(bookingActions.clearUserBookings());
-			// await dispatch(bookingActions.getUserBookings());
+			// await dispatch(bookingActions.clearUserBookings());
+			await dispatch(bookingActions.getUserBookings());
 		}
 	};
 	return (
@@ -365,8 +365,8 @@ const UserBookingCard = ({ booking }) => {
 									<div className="total">{grandTotal}</div>
 								</div>
 								<div>
-									You can manage all your trips in the{' '}
-									<NavLink to="/account">account</NavLink> page.
+									You can manage all your trips in your{' '}
+									<NavLink to="/user">user</NavLink> page.
 								</div>
 								<div
 									className="confirmed-trip-modal-done-button"
