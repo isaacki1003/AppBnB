@@ -106,11 +106,11 @@ function SearchBar({
 		};
 
 		window.addEventListener('scroll', onScroll, { passive: true });
-		window.addEventListener('click', onClickOutside);
+		// window.addEventListener('click', onClickOutside);
 
 		return () => {
 		window.removeEventListener('scroll', onScroll);
-		window.removeEventListener('click', onClickOutside);
+		// window.removeEventListener('click', onClickOutside);
 		};
 	}, []);
 

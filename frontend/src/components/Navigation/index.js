@@ -119,7 +119,11 @@ function Navigation({ isLoaded }){
 							<div className="start-search-button">
 								<div className="start-your-search">Start your search</div>
 								<div className="magnifying-glass">
-									<i class="fa-solid fa-magnifying-glass"></i>
+								<img
+									src="https://www.pngrepo.com/png/25222/180/magnifying-glass.png"
+									alt="self logo213"
+									style={{ height: '17px', width: '17px'}}
+								/>
 								</div>
 							</div>
 						</div>

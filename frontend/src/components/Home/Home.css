@@ -112,8 +112,9 @@
 .show-map-list-button{
     display: flex;
     align-items: center;
+    justify-content: center;
     position: fixed;
-    bottom: 84px;
+    bottom: 20px;
     border: none;
     height: 50px;
     width: fit-content;
@@ -124,4 +125,11 @@
     font-size: 1rem;
     cursor: pointer;
     z-index: 10;
+    right: 45%;
 }
+ .centerShowMap {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+ }

@@ -99,14 +99,22 @@ const Home = () => {
 	const display = (showMap) => {
 		if (showMap)
 			return (
-				<div>
-					Show list&nbsp;&nbsp;<i class="fa-solid fa-list-ul"></i>
+				<div className='centerShowMap'>
+					Show list&nbsp;&nbsp;<img
+						src="https://www.pngrepo.com/png/358458/180/bars.png"
+						alt="self logo123"
+						style={{ height: '20px', width: '20px', color: 'white'}}
+					/>
 				</div>
 			);
 		else
 			return (
-				<div>
-					Show map&nbsp;&nbsp;<i class="fa-solid fa-map"></i>
+				<div className='centerShowMap'>
+					Show map&nbsp;&nbsp;<img
+						src="https://www.pngrepo.com/png/10112/180/map.png"
+						alt="self logo123"
+						style={{ height: '20px', width: '20px', color: 'white'}}
+					/>
 				</div>
 			);
 	};
@@ -115,7 +123,7 @@ const Home = () => {
 		<div>
 			{filterSpots.length == 0 && (
 				<button
-					className="show-map-list-button"
+					className="show-map-list-button centerShowMap"
 					onClick={() => setShowMap(!showMap)}
 				>
 					{display(showMap)}

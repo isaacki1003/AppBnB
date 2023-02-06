@@ -157,6 +157,8 @@
     height: 48px;
     border-radius: 48px;
     display: flex;
+    margin-top: 0.8em;
+    margin-left: 2em;
     justify-content: space-between;
     align-items: center;
     padding: 0 0.6rem;
