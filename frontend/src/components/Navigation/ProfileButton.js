@@ -18,6 +18,11 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+  const navToUser = (e) => {
+	e.preventDefault();
+	window.location.href = `/user`;
+};
+
   useEffect(() => {
     if (!showMenu) return;
     const closeMenu = () => {
@@ -34,20 +39,23 @@ function ProfileButton({ user }) {
 				Become a host
 			</NavLink>
 			<button onClick={openMenu} className="button">
-        <img
+        			<img
 						src="https://www.pngrepo.com/png/358458/180/bars.png"
 						alt="self logo123"
-						style={{ height: '20px', width: '20px' , padding: '.03em'}}
+						style={{ height: '20px', width: '20px', marginLeft: '7px'}}
 					/>
 					<img
 						src="https://www.pngrepo.com/png/24707/180/avatar.png"
 						alt="self logo213"
-						style={{ height: '20px', width: '20px' , padding: '.03em'}}
+						style={{ height: '20px', width: '20px', marginRight: '8px'}}
 					/>
 				{showMenu && (
 					<ul className="drop-down">
 						<li className="logged-in test-nav">
 							<span>Welcome ‎ {' '}{' '}{' '} </span> {' '} {user.firstName}!
+						</li>
+						<li className="log-out" onClick={navToUser}>
+							User
 						</li>
 						<li className="log-out" onClick={logout}>
 							Log Out

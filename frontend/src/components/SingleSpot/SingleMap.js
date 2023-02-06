@@ -43,7 +43,7 @@ const SingleMap = ({ spot }) => {
 	const containerStyle = {
 		width: '100%',
 		height: '500px',
-		zIndex: '1'
+		zIndex: '0'
 	};
 
 	const [map, setMap] = useState(null);

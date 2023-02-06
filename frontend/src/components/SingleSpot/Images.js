@@ -9,7 +9,7 @@ export default function Images({ previewImage, otherImgs }) {
 					src={
 						previewImage
 							? previewImage.url
-							: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1ZUORVckQZ9J4iLlpYuyf8g377n5uH-ENIXOPsko&s'
+							: 'https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'
 					}
 					className="single-spot-prev"
 					alt="prev img"
@@ -24,7 +24,7 @@ export default function Images({ previewImage, otherImgs }) {
 						src={
 							image
 								? image.url
-								: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1ZUORVckQZ9J4iLlpYuyf8g377n5uH-ENIXOPsko&s'
+								: 'https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'
 						}
 					/>
 				))}

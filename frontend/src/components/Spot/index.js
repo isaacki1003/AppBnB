@@ -18,9 +18,9 @@ export default function Spot({ spot }) {
 				className="prev-image"
                     alt={spot.name}
 					src={
-						spot.previewImage === 'No preview Image Yet'
-							? "https://st4.depositphotos.com/14953852/22772/v/1600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg"
-							:  spot.previewImage
+						spot.previewImage
+							? spot.previewImage
+							: "https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg"
 					}
 				/>
 				<div className="spot-r1 spot-row not-wrap">

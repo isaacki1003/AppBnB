@@ -4,6 +4,9 @@ const LOAD_ALL_SPOTS = '/spots/LOAD_SPOTS';
 const LOAD_SPOT = '/spots/LOAD_SPOT';
 const CREATE_SPOT = 'spots/createSpot';
 const CLEAN_SPOT = 'spots/CLEAN_SPOT';
+const CLEAR_UP_ALL_SPOTS = 'spots/CLEAR_UP_ALL_SPOTS';
+const LOAD_USER_SPOTS = 'user/LOAD_USER_SPOTS';
+
 
 const normalize = (temp) => {
 	const newObj = {};
@@ -11,6 +14,13 @@ const normalize = (temp) => {
 	temp.forEach((item) => (newObj[item.id] = item));
 
 	return newObj;
+};
+
+const userSpots = spots => {
+	return {
+		type: LOAD_USER_SPOTS,
+		spots
+	};
 };
 
 const loadAllSpots = (allSpots) => {
@@ -34,6 +44,16 @@ const createSpot = (spot) => {
 	}
 };
 
+const loadUserSpots = (spots) => ({
+	type: LOAD_USER_SPOTS,
+	spots
+});
+
+export const cleanUpAllSpots = () => {
+	return {
+		type: CLEAR_UP_ALL_SPOTS
+	};
+};
 
 export const DeleteSpot = (spotId) => async () => {
 	return await csrfFetch(`/api/spots/${spotId}`, {
@@ -110,9 +130,21 @@ export const getAllSpots = () => async (dispatch) => {
 	}
 };
 
+export const getUserSpots = () => async (dispatch) => {
+	const res = await fetch('/api/spots/current');
+
+	if (res.ok) {
+		const spots = await res.json();
+		console.log(spots)
+		dispatch(loadUserSpots(userSpots.Spots));
+		return spots.Spots;
+	}
+};
+
 const initialState = {
 	AllSpots: {},
-	SingleSpot: {}
+	SingleSpot: {},
+	userSpots: {}
 };
 
 export const spotsReducer = (state = initialState, action) => {
@@ -124,8 +156,14 @@ export const spotsReducer = (state = initialState, action) => {
 		case LOAD_SPOT:
 			newState.SingleSpot = action.spot;
 			return newState;
+		case LOAD_USER_SPOTS:
+			newState.userSpots = action.spots;
+			return newState;
 		case CLEAN_SPOT:
 			newState.SingleSpot = {};
+			return newState;
+		case CLEAR_UP_ALL_SPOTS:
+			newState.AllSpots = {};
 			return newState;
         default: {
             return state;

@@ -2,6 +2,7 @@ const express = require('express');
 
 const { requireAuth, validateBooking } = require('../../utils/auth');
 const { Booking, Spot, SpotImage } = require('../../db/models');
+const { Op } = require('sequelize');
 
 const router = express.Router();
 
@@ -40,7 +41,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 });
 
 // Edit a Booking
-router.put('/:bookingId', requireAuth, validateBookingDates, async (req, res, next) => {
+router.put('/:bookingId', requireAuth, async (req, res, next) => {
     const bookingId = parseInt(req.params.bookingId);
     const { startDate, endDate } = req.body;
     const userId = req.user.id;
