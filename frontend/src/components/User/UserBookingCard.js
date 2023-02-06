@@ -365,8 +365,7 @@ const UserBookingCard = ({ booking }) => {
 									<div className="total">{grandTotal}</div>
 								</div>
 								<div>
-									You can manage all your trips in your{' '}
-									<NavLink to="/user">user</NavLink> page.
+									You can manage all your trips in your user page.
 								</div>
 								<div
 									className="confirmed-trip-modal-done-button"

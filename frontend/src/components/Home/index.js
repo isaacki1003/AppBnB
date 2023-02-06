@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import * as spotsActions from '../../store/spot';
 import Spot from "../Spot";
+import Maps from "../Maps";
 import "./Home.css";
 
 const Home = () => {
@@ -149,14 +150,14 @@ const Home = () => {
 					)}
 					{filterSpots.length > 0 && (
 						<div className="allSpot-map-search-wrapper">
-							{/* <GoogleMapAllSpots spots={filterSpots} zoom={13} /> */}
+							<Maps spots={filterSpots} zoom={13} />
 						</div>
 					)}
 				</div>
 			)}
 			{filterSpots.length == 0 && showMap && (
 				<div className="allSpot-map-wrapper">
-					{/* <GoogleMapAllSpots spots={allSpots} /> */}
+					<Maps spots={spots} />
 				</div>
 			)}
 

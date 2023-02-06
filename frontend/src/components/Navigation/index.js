@@ -107,11 +107,11 @@ function Navigation({ isLoaded }){
 							height: '50px',
 							width: '150px',
 							marginTop: '10px',
-							marginLeft: '10px'
+							marginRight: '50px'
 						}}
 					/>
 				</NavLink>
-				{!showSearchBar && (
+				{/* {!showSearchBar && (
 						<div
 							className="nav-bar-component center start-search-button-wrapper"
 							onClick={() => setShowSearchBar(true)}
@@ -127,18 +127,18 @@ function Navigation({ isLoaded }){
 								</div>
 							</div>
 						</div>
-					)}
+					)} */}
 				{isLoaded && sessionLinks}
 			</div>
-			{showSearchBar && (
-					<SearchBar
-						setShowSearchBar={setShowSearchBar}
-						checkInOutDate={checkInOutDate}
-						setCheckInOutDate={setCheckInOutDate}
-						destination={destination}
-						setDestination={setDestination}
-					/>
-				)}
+			{/* {showSearchBar && (
+				<SearchBar
+					setShowSearchBar={setShowSearchBar}
+					checkInOutDate={checkInOutDate}
+					setCheckInOutDate={setCheckInOutDate}
+					destination={destination}
+					setDestination={setDestination}
+				/>
+			)} */}
 		</div>
 	);
 }
