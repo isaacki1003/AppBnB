@@ -111,7 +111,7 @@ function Navigation({ isLoaded }){
 						}}
 					/>
 				</NavLink>
-				{/* {!showSearchBar && (
+				{!showSearchBar && (
 						<div
 							className="nav-bar-component center start-search-button-wrapper"
 							onClick={() => setShowSearchBar(true)}
@@ -127,10 +127,10 @@ function Navigation({ isLoaded }){
 								</div>
 							</div>
 						</div>
-					)} */}
+					)}
 				{isLoaded && sessionLinks}
 			</div>
-			{/* {showSearchBar && (
+			{showSearchBar && (
 				<SearchBar
 					setShowSearchBar={setShowSearchBar}
 					checkInOutDate={checkInOutDate}
@@ -138,7 +138,7 @@ function Navigation({ isLoaded }){
 					destination={destination}
 					setDestination={setDestination}
 				/>
-			)} */}
+			)}
 		</div>
 	);
 }

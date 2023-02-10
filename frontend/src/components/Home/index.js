@@ -5,11 +5,13 @@ import * as spotsActions from '../../store/spot';
 import Spot from "../Spot";
 import Maps from "../Maps";
 import "./Home.css";
+import CategoryBar from '../CategoryBar';
 
 const Home = () => {
     const dispatch = useDispatch();
 	const location = useLocation();
 	const params = new URLSearchParams(location.search);
+	const category = params.get('categ');
 	const destination = params.get('desc');
 	const checkInDate = params.get('checkIn');
 	const checkOutDate = params.get('checkOut');
@@ -23,6 +25,28 @@ const Home = () => {
 	useEffect(() => {
 		dispatch(spotsActions.getAllSpots());
 	}, [dispatch]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			let spots = await dispatch(spotsActions.getAllSpots());
+			let FilteredSpots = [];
+			if (category) {
+				console.log('category------------------->', category)
+				const spotsArray = Object.values(spots);
+				for (let i = 0; i < spotsArray.length; i++) {
+				  const spot = spotsArray[i];
+				  if (spot.decription?.toLowerCase().includes(category.toLowerCase())
+				  || spot.name?.toLowerCase().includes(category.toLowerCase()))  {
+					FilteredSpots.push(spot);
+				  }
+				}
+			  }
+
+
+			setFilterSpots(FilteredSpots);
+		};
+		fetchData();
+	}, [dispatch, category]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -62,13 +86,23 @@ const Home = () => {
 				FilteredSpots = spots;
 			}
 			if (destination) {
-				spots = spots.filter(
-					(spot) =>
-						destination.toLowerCase().includes(spot.city.toLowerCase()) ||
-						destination.toLowerCase().includes(spot.state.toLowerCase())
-				);
-				FilteredSpots = spots;
-			}
+				let tempDest = destination.split(',');
+				let tempDestCity = tempDest[0].toString().toLowerCase();
+				let tempDestState = tempDest[1].toString().toLowerCase();
+				const spotsArray = Object.values(spots);
+				let filteredSpots = [];
+				for (let i = 0; i < spotsArray.length; i++) {
+				  const spot = spotsArray[i];
+				  if (spot.city.toLowerCase().includes(destination.toLowerCase())
+				  || spot.state.toLowerCase().includes(destination.toLowerCase())
+				  || spot.city.toLowerCase().includes(tempDestCity)
+				  || spot.state.toLowerCase().includes(tempDestState)) {
+					filteredSpots.push(spot);
+				  }
+				}
+				FilteredSpots = filteredSpots;
+			  }
+
 
 			setFilterSpots(FilteredSpots);
 		};
@@ -122,6 +156,7 @@ const Home = () => {
 
 	return (
 		<div>
+			<CategoryBar />
 			{filterSpots.length == 0 && (
 				<button
 					className="show-map-list-button centerShowMap"
@@ -132,7 +167,8 @@ const Home = () => {
 			)}
 			{!showMap && (
 				<div className="allSpots-main-wrapper">
-					{filterSpots.length == 0 && (
+
+					{!category && !destination && filterSpots.length == 0 && (
 						<div className="allSpots-wrapper">
 							{filterSpots.length == 0 &&
 								spotsArrayList?.map((spot) => (
@@ -141,14 +177,46 @@ const Home = () => {
 						</div>
 					)}
 
-					{filterSpots.length > 0 && (
+					{!category && destination && filterSpots.length == 0 && (
+						<div className="allSpots-wrapper1">
+							<h1 className='category-no-res-h1'>
+								No results found for {destination}.
+							</h1>
+							<h2 className='category-no-res-h1'>
+								We are working hard to add more spots! List your spot
+								to help us grow!
+							</h2>
+						</div>
+					)}
+
+					{category && !destination && filterSpots.length == 0 && (
+						<div className="allSpots-wrapper1">
+							<h1 className='category-no-res-h1'>
+								No results found for {category}.
+							</h1>
+							<h2 className='category-no-res-h1'>
+								We are working hard to add more spots! List your spot
+								to help us grow!
+							</h2>
+						</div>
+					)}
+
+					{category && !destination && filterSpots.length > 0 && (
+						<div className="allSpots-wrapper">
+							{filterSpots.map((spot) => (
+								<Spot spot={spot} key={spot.id} />
+							))}
+						</div>
+					)}
+
+					{!category && !destination && filterSpots.length > 0 && (
 						<div className="allSpots-result-wrapper">
 							{filterSpots.map((spot) => (
 								<Spot spot={spot} key={spot.id} />
 							))}
 						</div>
 					)}
-					{filterSpots.length > 0 && (
+					{!category && !destination && filterSpots.length > 0 && (
 						<div className="allSpot-map-search-wrapper">
 							<Maps spots={filterSpots} zoom={13} />
 						</div>

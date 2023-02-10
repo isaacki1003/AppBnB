@@ -126,7 +126,7 @@ function SearchBar({
 			? new Date(checkInOutDate[1]).toJSON().slice(0, 10).toString()
 			: '';
 		history.push(
-			`/?desc=${destination}&checkIn=${checkInDate}&checkOut=${checkOutDate}`
+			`/?categ=&desc=${destination}&checkIn=${checkInDate}&checkOut=${checkOutDate}`
 		);
 		setCheckInOutDate('');
 		setDestination('');
@@ -200,7 +200,11 @@ function SearchBar({
 								onClick={() => setDestination(result)}
 							>
 								<div id="search-each-result-icon" className="center">
-									<i class="fa-solid fa-location-dot"></i>
+									<img
+										src="https://www.pngrepo.com/png/27318/180/location.png"
+										alt="self logo123"
+										style={{ height: '30px', width: '30px'}}
+									/>
 								</div>
 								<div id="search-each-result">{result}</div>
 							</div>

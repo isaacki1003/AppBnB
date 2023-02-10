@@ -127,6 +127,7 @@ export const getAllSpots = () => async (dispatch) => {
 		const spots = await res.json();
 		const newSpots = normalize(spots.Spots);
 		dispatch(loadAllSpots(newSpots));
+		return newSpots;
 	}
 };
 
@@ -135,7 +136,6 @@ export const getUserSpots = () => async (dispatch) => {
 
 	if (res.ok) {
 		const spots = await res.json();
-		console.log(spots)
 		dispatch(loadUserSpots(userSpots.Spots));
 		return spots.Spots;
 	}

@@ -18,7 +18,7 @@ const UserBookingCard = ({ booking }) => {
 
 	const [showCalendarModal, setShowCalendarModal] = useState(false);
 	const thisSpot = allSpots[booking.Spot.id];
-	console.log('thisSpot', thisSpot)
+	console.log(thisSpot)
 	// get 3 Word Name of location
 	const spotNameArr = thisSpot.name?.split(' ');
 	let name = '';
@@ -110,6 +110,7 @@ const UserBookingCard = ({ booking }) => {
 				booking.startDate,
 				booking.endDate
 			]);
+			console.log('bookingDates------------------------>', bookings)
 			// set spot booked date to state.
 			setSpotBookings(bookings);
 		};
@@ -193,7 +194,7 @@ const UserBookingCard = ({ booking }) => {
 	};
 	return (
 		<>
-			<div className="account-display-bookings">
+			<div className="account-display-bookings" id="user-bookings">
 				<div id="account-booking-date-info">
 					<div id="spot-name-info">
 						<div id="spot-name">{booking.Spot.name}</div>
@@ -373,6 +374,7 @@ const UserBookingCard = ({ booking }) => {
 										await dispatch(bookingActions.clearUserBookings());
 										await dispatch(bookingActions.getUserBookings());
 										setShowCofirmedEditBookingModal(false);
+										window.location.reload();
 									}}
 								>
 									Done
