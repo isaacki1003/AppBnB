@@ -12,7 +12,6 @@ import UserPastCard from './UserPastCard';
 export default function User() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-	console.log('sessionUser', sessionUser)
     const userSpots = useSelector((state) => state.spots.userSpots);
 	const userReviews = useSelector((state) => Object.values(state.reviews.user));
     const userBookings = useSelector((state) => state.bookings.userBookings);
@@ -28,7 +27,6 @@ export default function User() {
 	useEffect(() => {
 		const getData = async () => {
 			const allUserSpots = await dispatch(spotActions.getUserSpots());
-			console.log('allUserSpots', allUserSpots);
 			setAllSpots(allUserSpots);
 		};
 		getData();

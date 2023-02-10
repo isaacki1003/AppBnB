@@ -80,7 +80,6 @@ export default function AddSpot1() {
 		setShowPreview(true);
 		setHasSubmitImg(false);
 		const postImage = async (imagess) => {
-			console.log(imagess);
 			let imageArr = [];
 			let allImages = Object.values(imagess);
 			for (let i = 0; i < allImages.length; i++) {

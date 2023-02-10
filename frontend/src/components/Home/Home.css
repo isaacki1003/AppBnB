@@ -39,7 +39,7 @@
     width: 100%;
     justify-content: center;
     box-sizing: border-box;
-    margin-top: 95px;
+    margin-top: 16px;
 }
 .allSpots-result-wrapper{
     margin-top: 25px;
@@ -142,4 +142,17 @@
 .format-footer1 {
     margin-top: 1em;
     padding-bottom: 5em;
+}
+
+.category-no-res-h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.allSpots-wrapper1 {
+    min-width: 100vw;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
