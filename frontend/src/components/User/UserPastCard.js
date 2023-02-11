@@ -8,7 +8,6 @@ const UserPastCard = ({ booking }) => {
 	const thisSpot = allSpots[booking.Spot.id];
 
 	const startDate = new Date(booking.startDate.replace('-', '/'));
-	console.log('startDate -------------------------------->', startDate)
 	const tripYear = startDate.toDateString().slice(11, 15);
 	const startMonth = startDate.toDateString().slice(4, 7);
 	const startDay = startDate.toDateString().slice(8, 10);

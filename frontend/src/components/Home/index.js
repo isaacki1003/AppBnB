@@ -31,7 +31,6 @@ const Home = () => {
 			let spots = await dispatch(spotsActions.getAllSpots());
 			let FilteredSpots = [];
 			if (category) {
-				console.log('category------------------->', category)
 				const spotsArray = Object.values(spots);
 				for (let i = 0; i < spotsArray.length; i++) {
 				  const spot = spotsArray[i];
@@ -87,8 +86,8 @@ const Home = () => {
 			}
 			if (destination) {
 				let tempDest = destination.split(',');
-				let tempDestCity = tempDest[0].toString().toLowerCase();
-				let tempDestState = tempDest[1].toString().toLowerCase();
+				let tempDestCity = tempDest[0]?.toString().toLowerCase();
+				let tempDestState = tempDest[1]?.toString().toLowerCase();
 				const spotsArray = Object.values(spots);
 				let filteredSpots = [];
 				for (let i = 0; i < spotsArray.length; i++) {
