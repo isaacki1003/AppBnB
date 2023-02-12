@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import * as spotsActions from '../../store/spot';
 import Spot from "../Spot";
 import Maps from "../Maps";
@@ -15,7 +15,6 @@ const Home = () => {
 	const destination = params.get('desc');
 	const checkInDate = params.get('checkIn');
 	const checkOutDate = params.get('checkOut');
-
 	const [showMap, setShowMap] = useState(false);
 	const [filterSpots, setFilterSpots] = useState([]);
 	const [count, setCount] = useState(0);
@@ -31,7 +30,6 @@ const Home = () => {
 			let spots = await dispatch(spotsActions.getAllSpots());
 			let FilteredSpots = [];
 			if (category) {
-				console.log('category------------------->', category)
 				const spotsArray = Object.values(spots);
 				for (let i = 0; i < spotsArray.length; i++) {
 				  const spot = spotsArray[i];
@@ -87,8 +85,8 @@ const Home = () => {
 			}
 			if (destination) {
 				let tempDest = destination.split(',');
-				let tempDestCity = tempDest[0].toString().toLowerCase();
-				let tempDestState = tempDest[1].toString().toLowerCase();
+				let tempDestCity = tempDest[0]?.toLowerCase();
+				let tempDestState = tempDest[1]?.toLowerCase();
 				const spotsArray = Object.values(spots);
 				let filteredSpots = [];
 				for (let i = 0; i < spotsArray.length; i++) {
@@ -174,6 +172,14 @@ const Home = () => {
 								spotsArrayList?.map((spot) => (
 									<Spot spot={spot} key={spot.id} />
 								))}
+						</div>
+					)}
+
+					{!category && destination && filterSpots.length > 0 && (
+						<div className="allSpots-wrapper">
+							{filterSpots.map((spot) => (
+							<Spot spot={spot} key={spot.id} />
+							))}
 						</div>
 					)}
 

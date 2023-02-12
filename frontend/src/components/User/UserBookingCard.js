@@ -18,7 +18,6 @@ const UserBookingCard = ({ booking }) => {
 
 	const [showCalendarModal, setShowCalendarModal] = useState(false);
 	const thisSpot = allSpots[booking.Spot.id];
-	console.log(thisSpot)
 	// get 3 Word Name of location
 	const spotNameArr = thisSpot.name?.split(' ');
 	let name = '';
@@ -110,7 +109,6 @@ const UserBookingCard = ({ booking }) => {
 				booking.startDate,
 				booking.endDate
 			]);
-			console.log('bookingDates------------------------>', bookings)
 			// set spot booked date to state.
 			setSpotBookings(bookings);
 		};

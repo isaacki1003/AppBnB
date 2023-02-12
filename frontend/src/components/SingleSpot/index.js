@@ -8,6 +8,7 @@ import SpotTitle from './SpotTitle';
 import SpotReviews from '../ReviewsSpot';
 import SingleMap from './SingleMap';
 import "./SingleSpot.css";
+import NotFound from '../NotFound';
 
 export default function SingleSpot() {
     const { spotId } = useParams();
@@ -20,7 +21,11 @@ export default function SingleSpot() {
         return () => dispatch(cleanSpot());
     }, [dispatch, spotId]);
 
-    if (!Object.keys(spot).length) return null;
+    if (!Object.keys(spot).length) return (
+		<div>
+			<NotFound />
+		</div>
+	);
 
 	const previewImage = spot.SpotImages?.find(image => image.preview === true);
 	let otherImgs = new Array(4).fill(null);

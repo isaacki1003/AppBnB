@@ -10,7 +10,7 @@ import UpdateSpot from "./components/UpdateSpot";
 import ScrollToTop from "./components/ScrollToTop";
 import User from "./components/User";
 import PortfolioButton from "./components/PortfolioButton";
-
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,11 +36,14 @@ function App() {
 					<Route exact path="/spots/:spotId">
 						<SingleSpot />
 					</Route>
-					<Route path="/spots/:spotId/update">
+					<Route exact path="/spots/:spotId/update">
 						<UpdateSpot />
 					</Route>
-					<Route path="/become-a-host">
+					<Route exact path="/become-a-host">
 						<AddSpot1 />
+					</Route>
+					<Route path="*">
+						<NotFound />
 					</Route>
 				</Switch>
 			</div>
