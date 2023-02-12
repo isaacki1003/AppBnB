@@ -1,0 +1,9 @@
+.allSpots-wrapper1 {
+    min-width: 100vw;
+    margin-top: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: larger;
+}

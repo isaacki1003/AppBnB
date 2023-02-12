@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSpotDetails } from '../../store/spot';
 import * as spotsActions from '../../store/spot';
 import './UpdateSpot.css';
+import NotFound from '../NotFound';
 
 export default function UpdateSpot() {
 	const dispatch = useDispatch();
@@ -41,6 +42,11 @@ export default function UpdateSpot() {
 		dispatch(getSpotDetails(spotId));
 	}, [dispatch, spotId]);
 
+	if (!Object.keys(spot).length) return (
+		<div>
+			<NotFound />
+		</div>
+	);
 
 	const UpdateSpot2 = async (e) => {
 		e.preventDefault();
