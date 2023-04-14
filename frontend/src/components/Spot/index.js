@@ -15,14 +15,16 @@ export default function Spot({ spot }) {
 		<NavLink style={{ textDecoration: 'none' }} to={`/spots/${spot.id}`}>
 			<div className="spot-wrapper">
 				<img
-				className="prev-image"
-                    alt={spot.name}
-					src={
-						spot.previewImage
-							? spot.previewImage
-							: "https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg"
-					}
+					className="prev-image"
+					alt={spot.name}
+					src={spot.previewImage}
+					onError={(e) => {
+						e.target.onerror = null;
+						e.target.src =
+						"https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg";
+					}}
 				/>
+
 				<div className="spot-r1 spot-row not-wrap">
 					<span>
 						{spot.city}, {spot.state}{' '}
