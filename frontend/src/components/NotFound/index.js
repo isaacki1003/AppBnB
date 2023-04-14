@@ -1,11 +1,25 @@
+import React, { useState, useEffect } from "react";
 import './NotFound.css';
 
 const NotFound = () => {
-    return (
-        <div className='allSpots-wrapper1'>
-            PAGE NOT FOUND 404
-        </div>
-    );
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className='allSpots-wrapper1'>
+      {isLoading ? (
+        <div>LOADING...</div>
+      ) : (
+        <div>404 PAGE NOT FOUND</div>
+      )}
+    </div>
+  );
 };
 
 export default NotFound;
