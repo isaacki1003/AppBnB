@@ -11,6 +11,12 @@ function currencyFormat(num) {
 		currency: 'USD'
 	});
 }
+
+function isDateFormat(str) {
+	const pattern = /^\d{4}-\d{2}-\d{2}$/;
+	return pattern.test(str);
+}
+
 const UserBookingCard = ({ booking }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -109,6 +115,7 @@ const UserBookingCard = ({ booking }) => {
 				booking.startDate,
 				booking.endDate
 			]);
+			console.log("bookings -------------->", bookings);
 			// set spot booked date to state.
 			setSpotBookings(bookings);
 		};
