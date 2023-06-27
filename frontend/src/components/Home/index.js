@@ -231,7 +231,7 @@ const Home = () => {
 			)}
 			{filterSpots.length == 0 && showMap && (
 				<div className="allSpot-map-wrapper">
-					<Maps spots={spots} />
+					<Maps spots={spots} key={Math.random()}/>
 				</div>
 			)}
 
