@@ -2,11 +2,13 @@
 LOOK AT THIS GUY WHO COPIED MY CODE LINE FOR LINE
 (https://github.com/jlbigbee/Airbnb-Clone)
 
-He is currently copying an app from a 3-rd party!
+# `AppBnB`
 
-Johnathon Bigbee has copied all my code word for word. His Gtihub is a copy and paste of one of my projects.
+The person who literally copy and pasted my site is currently copying an app from a 3-rd party! (https://github.com/jlbigbee) 
 
-I had to find out myself that he was copying my projects and work, down to the tiniest detail (copyt as paste). Ever since, he has not shown his face in programming. After getting kicked out of a coding bootcamp, I wouldn't either. I tried to cheat my way out but I wasn't smart enough to do even that so now I am still mad at the world cause I havbe no direction and I am a loser.
+Johnathon Bigbee has copied all my code word for word. His Gtihub is a copy and paste of one of my projects.  (https://github.com/jlbigbee) 
+
+I had to find out myself that he was copying my projects and work, down to the tiniest detail (copyt as paste). Ever since, he has not shown his face in programming. After getting kicked out of a coding bootcamp, I wouldn't either. I tried to cheat my way out, but I wasn't smart enough to do even that so now I am still mad at the world cause I have no direction and I am a loser. - JL Bigbee (https://github.com/jlbigbee) 
 
 # `AppBnB`
 
