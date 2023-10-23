@@ -1,4 +1,4 @@
-# `THIS GUY Copied  My Code -> Johnathon BigBee - UCLA - GRADUATED? - COPIED ALL CODE`
+# `THIS GUY Copied My Code LINE FOR LINE (COPY PASTE) -> Johnathon BigBee - UCLA - GRADUATED? - COPIED ALL CODE`
 LOOK AT THIS GUY WHO COPIED MY CODE LINE FOR LINE
 (https://github.com/jlbigbee/Airbnb-Clone)
 
