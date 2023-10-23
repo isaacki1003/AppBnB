@@ -1,3 +1,10 @@
+# `Copied Code - Johnathon BigBee - UCLA - COPIED`
+LOOK AT THIS GUY WHO COPIED MY CODE LINE FOR LINE
+(https://github.com/jlbigbee/Airbnb-Clone)
+
+He is currently copying an app from a 3-rd party!
+
+
 # `AppBnB`
 
 [AppBnB](https://appbnb1.herokuapp.com/) is a web application inspired by [Airbnb](https://www.airbnb.com/), that provides an online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities.
