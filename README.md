@@ -4,7 +4,7 @@ LOOK AT THIS GUY WHO COPIED MY CODE LINE FOR LINE
 
 # `AppBnB`
 
-The person who literally copy and pasted my site is currently copying an app from a 3-rd party! (https://github.com/jlbigbee) 
+The person who literally copy and pasted my site is currently viewing the app from a 3-rd party! (https://github.com/jlbigbee) 
 
 Johnathon Bigbee has copied all my code word for word. His Gtihub is a copy and paste of one of my projects.  (https://github.com/jlbigbee) 
 
