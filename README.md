@@ -4,6 +4,9 @@ LOOK AT THIS GUY WHO COPIED MY CODE LINE FOR LINE
 
 He is currently copying an app from a 3-rd party!
 
+Johnathon Bigbee has copied all my code word for word. His Gtihub is a copy and paste of one of my projects.
+
+I had to find out myself that he was copying my projects and work, down to the tiniest detail (copyt as paste). Ever since, he has not shown his face in programming. After getting kicked out of a coding bootcamp, I wouldn't either. I tried to cheat my way out but I wasn't smart enough to do even that so now I am still mad at the world cause I havbe no direction and I am a loser.
 
 # `AppBnB`
 
